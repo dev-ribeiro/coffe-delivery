@@ -1,11 +1,12 @@
 import styled from "styled-components";
 
 export const CoffeeStroreContainer = styled.section`
+    width: 100%;
     padding: 20px;
-    width: 50%;
 
     h3 {
         font-family: 'Baloo 2', monospace;
+        margin-bottom: 3.125rem;
     }
 `
 
