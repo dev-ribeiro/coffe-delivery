@@ -10,4 +10,8 @@ export const CoffeeStroreContainer = styled.section`
     }
 `
 
-export const StoreContainer = styled.main``
+export const StoreContainer = styled.main`
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 40px 32px;
+`

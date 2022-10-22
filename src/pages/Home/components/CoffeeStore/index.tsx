@@ -7,6 +7,12 @@ export function CoffeeStrore() {
             <h3>Nossos cafés</h3>
             <StoreContainer>
                 <CoffeeItem/>
+                <CoffeeItem/>
+                <CoffeeItem/>
+                <CoffeeItem/>
+                <CoffeeItem/>
+                <CoffeeItem/>
+                <CoffeeItem/>
             </StoreContainer>
         </CoffeeStroreContainer>
     )
