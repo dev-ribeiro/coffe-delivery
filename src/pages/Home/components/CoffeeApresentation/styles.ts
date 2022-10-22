@@ -2,6 +2,7 @@ import styled from "styled-components"
 
 export const CoffeeApresentationContainer = styled.div`
     max-width: 70.3125rem;
+    margin: 6.6875rem 0;
 
     display: flex;
     justify-content: center;
@@ -9,6 +10,8 @@ export const CoffeeApresentationContainer = styled.div`
 `
 
 export const ContentWrapper = styled.div`
+    height: 22.5rem;
+
     display: flex;
     justify-content: center;
     align-items: center;
