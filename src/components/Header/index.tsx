@@ -1,6 +1,6 @@
 import { MapPin, ShoppingCart } from 'phosphor-react'
 import { useContext } from 'react'
-import { CoffeeCounterContext } from '../../contexts/CoffeeCounter'
+import { CoffeeCounterContext } from '../../contexts/CoffeeContexts'
 import logo from '../../images/logo.svg'
 import { CartWrapper, HeaderContainer, LocationContainer, ShoppingCartContainer } from './styles'
 

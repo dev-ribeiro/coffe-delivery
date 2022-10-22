@@ -1,21 +1,20 @@
 import { ShoppingCart } from "phosphor-react";
 import { CoffeeCategories, CoffeeCategoriesWrapper, CoffeeDescription, CoffeeInfoWrapper, CoffeeItemContainer, CoffeePrice, CoffeePricesWrapper, CoffeeTitle, CounterCartWrapper } from "./styles";
-import expresso from '../../../../images/store/expresso.png'
 import { useContext } from "react";
-import { CoffeeCounterContext } from "../../../../contexts/CoffeeCounter";
+import { CoffeeCounterContext, ICoffees } from "../../../../contexts/CoffeeContexts";
 
-export function CoffeeItem() {
+export function CoffeeItem({ categories, description, image_path, title }: ICoffees) {
     const { addCoffeeToCart, removeCoffeeToCart } = useContext(CoffeeCounterContext)
 
     return (
         <CoffeeItemContainer>
-            <img src={expresso} alt="" />
+            <img src={image_path} alt="" />
             <CoffeeCategoriesWrapper>
-                <CoffeeCategories>TRADICIONAL</CoffeeCategories>
+                <CoffeeCategories>{categories.map(category => <CoffeeCategories>{category.toUpperCase()}</CoffeeCategories>)}</CoffeeCategories>
             </CoffeeCategoriesWrapper>
             <CoffeeInfoWrapper>
-                <CoffeeTitle>Expresso tradicional</CoffeeTitle>
-                <CoffeeDescription>O tradicional café feito com água quente e grãos moídos</CoffeeDescription>
+                <CoffeeTitle>{title}</CoffeeTitle>
+                <CoffeeDescription>{description}</CoffeeDescription>
             </CoffeeInfoWrapper>
             <CoffeePricesWrapper>
                 <CoffeePrice>
