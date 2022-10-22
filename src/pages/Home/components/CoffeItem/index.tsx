@@ -1,21 +1,34 @@
 import { ShoppingCart } from "phosphor-react";
-import { CoffeeItemContainer } from "./styles";
+import { CoffeeCategories, CoffeeCategoriesWrapper, CoffeeDescription, CoffeeInfoWrapper, CoffeeItemContainer, CoffeePrice, CoffeePricesWrapper, CoffeeTitle, CounterCartWrapper } from "./styles";
 import expresso from '../../../../images/store/expresso.png'
 
 export function CoffeeItem() {
     return (
         <CoffeeItemContainer>
             <img src={expresso} alt="" />
-            <span>TRADICIONAL</span>
-            <h4>Expresso tradicional</h4>
-            <p>O tradicional café feito com água quente e grãos moídos</p>
-            <div>
-                <p>R$ 9,90</p>
-                <span>+</span>
-                <span>1</span>
-                <span>-</span>
-                <ShoppingCart size={16} fill="true"/>
-            </div>
+            <CoffeeCategoriesWrapper>
+                <CoffeeCategories>TRADICIONAL</CoffeeCategories>
+            </CoffeeCategoriesWrapper>
+            <CoffeeInfoWrapper>
+                <CoffeeTitle>Expresso tradicional</CoffeeTitle>
+                <CoffeeDescription>O tradicional café feito com água quente e grãos moídos</CoffeeDescription>
+            </CoffeeInfoWrapper>
+            <CoffeePricesWrapper>
+                <CoffeePrice>
+                    <span className='prefix'>R${' '}</span>
+                    <span className='price'>9,90</span>
+                </CoffeePrice>
+                <CounterCartWrapper>
+                    <div className='counterWrapper'>
+                        <span className='minun'>-</span>
+                        <span className='counter'>1</span>
+                        <span className='plus'>+</span>
+                    </div>
+                    <div className='cartWrapper'>
+                        <ShoppingCart size={16} weight='fill' />
+                    </div>
+                </CounterCartWrapper>
+            </CoffeePricesWrapper>
         </CoffeeItemContainer>
     )
 }
