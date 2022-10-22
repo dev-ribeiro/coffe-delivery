@@ -1,9 +1,11 @@
 import styled from "styled-components"
 
 export const CoffeeApresentationContainer = styled.div`
+    max-width: 70.3125rem;
+
     display: flex;
     justify-content: center;
-    gap: 8px;
+    gap: 56px;
 `
 
 export const ContentWrapper = styled.div`
