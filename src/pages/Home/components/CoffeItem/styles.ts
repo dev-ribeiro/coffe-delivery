@@ -113,6 +113,9 @@ export const CounterCartWrapper = styled.div`
         }
 
         .plus, .minun{
+            cursor: pointer;
+            background: none;
+            border: none;
             font-weight: bolder;
             color: ${props => props.theme['purple-dark']};
         }

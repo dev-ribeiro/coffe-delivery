@@ -1,8 +1,12 @@
 import { MapPin, ShoppingCart } from 'phosphor-react'
+import { useContext } from 'react'
+import { CoffeeCounterContext } from '../../contexts/CoffeeCounter'
 import logo from '../../images/logo.svg'
-import { HeaderContainer, LocationContainer, ShoppingCartContainer } from './styles'
+import { CartWrapper, HeaderContainer, LocationContainer, ShoppingCartContainer } from './styles'
 
 export function Header() {
+    const { count } = useContext(CoffeeCounterContext)
+
     return (
         <HeaderContainer>
             <img src={logo} alt="" />
@@ -11,9 +15,18 @@ export function Header() {
                     <MapPin size={22} weight='fill' />
                     <span>Fortaleza - Ce</span>
                 </LocationContainer>
-                <div className='cart'>
-                    <ShoppingCart size={22} weight='fill' />
-                </div>
+                {count != 0 ? (
+                    <CartWrapper>
+                        <a className='cart' href='/checkout'>
+                            <ShoppingCart size={22} weight='fill' />
+                        </a>
+                        <span>{count}</span>
+                    </CartWrapper>
+                ) : (
+                    <a className='cart' href='/checkout'>
+                        <ShoppingCart size={22} weight='fill' />
+                    </a>
+                )}
             </ShoppingCartContainer>
         </HeaderContainer>
     )

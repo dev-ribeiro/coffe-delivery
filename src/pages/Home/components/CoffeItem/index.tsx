@@ -1,8 +1,12 @@
 import { ShoppingCart } from "phosphor-react";
 import { CoffeeCategories, CoffeeCategoriesWrapper, CoffeeDescription, CoffeeInfoWrapper, CoffeeItemContainer, CoffeePrice, CoffeePricesWrapper, CoffeeTitle, CounterCartWrapper } from "./styles";
 import expresso from '../../../../images/store/expresso.png'
+import { useContext } from "react";
+import { CoffeeCounterContext } from "../../../../contexts/CoffeeCounter";
 
 export function CoffeeItem() {
+    const { addCoffeeToCart, removeCoffeeToCart } = useContext(CoffeeCounterContext)
+
     return (
         <CoffeeItemContainer>
             <img src={expresso} alt="" />
@@ -20,9 +24,9 @@ export function CoffeeItem() {
                 </CoffeePrice>
                 <CounterCartWrapper>
                     <div className='counterWrapper'>
-                        <span className='minun'>-</span>
+                        <button className='minun' onClick={removeCoffeeToCart}>-</button>
                         <span className='counter'>1</span>
-                        <span className='plus'>+</span>
+                        <button className='plus' onClick={addCoffeeToCart}>+</button>
                     </div>
                     <div className='cartWrapper'>
                         <ShoppingCart size={16} weight='fill' />

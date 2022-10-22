@@ -32,7 +32,6 @@ export const ShoppingCartContainer = styled.div`
             color: ${props => props.theme['yellow-dark']};
         }
     }
-
 `
 
 export const LocationContainer = styled.div`
@@ -41,5 +40,31 @@ export const LocationContainer = styled.div`
     span {
         line-height: 1.3;
         color: ${props => props.theme['purple-dark']};
+    }
+`
+
+export const CartWrapper = styled.div`
+    display: flex;
+    gap: 0;
+
+    span {
+        width: 20px;
+        height: 20px;
+        margin-left: -10px;
+        margin-top: -5px;
+        align-self: flex-start;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        font-size: 12px;
+        font-weight: bold;
+        font-family: 'Roboto', sans-serif;
+
+        color: ${props => props.theme['white']};
+        background-color: ${props => props.theme['yellow-dark']};
+
+        border-radius: 999px;
     }
 `
