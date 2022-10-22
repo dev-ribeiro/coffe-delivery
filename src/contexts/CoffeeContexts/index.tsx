@@ -1,10 +1,13 @@
 import { createContext, ReactNode, useState } from 'react';
 
-interface ICoffeeCounterContextType {
-    count: number
-    addCoffeeToCart: () => void
-    removeCoffeeToCart: () => void
+export interface ICoffees {
+    categories: string[]
+    title: string
+    description: string
+    image_path: string
+    amountSelected?: number
 }
+
 
 export const CoffeeCounterContext = createContext({} as ICoffeeCounterContextType)
 
@@ -12,7 +15,16 @@ interface ICoffeeCounterContextProviderProps {
     children: ReactNode
 }
 
+interface ICoffeeCounterContextType {
+    count: number
+    coffees: ICoffees[]
+    addCoffeeToCart: () => void
+    removeCoffeeToCart: () => void
+    updateCoffesData: (data: ICoffees[]) => void
+}
+
 export function CoffeeCounterContextProvider({ children }: ICoffeeCounterContextProviderProps) {
+    const [coffees, setCoffees] = useState<ICoffees[]>([]);
     const [count, setCount] = useState(0);
 
     function addCoffeeToCart() {
@@ -23,11 +35,17 @@ export function CoffeeCounterContextProvider({ children }: ICoffeeCounterContext
         setCount(state => state - 1);
     }
 
+    function updateCoffesData(data: ICoffees[]) {
+        setCoffees(data)
+    }
+
     return (
         <CoffeeCounterContext.Provider value={{
             count,
+            coffees,
             addCoffeeToCart,
-            removeCoffeeToCart
+            removeCoffeeToCart,
+            updateCoffesData
         }}>
             {children}
         </CoffeeCounterContext.Provider>
