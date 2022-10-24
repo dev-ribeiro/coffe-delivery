@@ -1,139 +1,138 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const CoffeeItemContainer = styled.section`
-    width: 16rem;
+  width: 16rem;
 
-    padding: 20px;
+  padding: 20px;
 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
-    background-color: ${props => props.theme['gray-200']};
+  background-color: ${(props) => props.theme['gray-200']};
 
-    border-bottom-left-radius: 6px;
-    border-top-right-radius: 6px;
-    border-top-left-radius: 36px;
-    border-bottom-right-radius: 36px;
+  border-bottom-left-radius: 6px;
+  border-top-right-radius: 6px;
+  border-top-left-radius: 36px;
+  border-bottom-right-radius: 36px;
 
-    img{
-        width: 120px;
-        height: 120px;
+  img {
+    width: 120px;
+    height: 120px;
 
-        margin-top: -40px;
-    }
+    margin-top: -40px;
+  }
 `
 
 export const CoffeeCategoriesWrapper = styled.div`
-    margin: 12px 0;
+  margin: 12px 0;
 `
 
 export const CoffeeCategories = styled.span`
-    padding: 8px;
+  padding: 8px;
 
-    background-color: ${props => props.theme['yellow-light']};
-    color: ${props => props.theme['yellow-dark']};
+  background-color: ${(props) => props.theme['yellow-light']};
+  color: ${(props) => props.theme['yellow-dark']};
 
-    border-radius: 8px;
+  border-radius: 8px;
 
-    font-family: 'Roboto', sans-serif;
-    font-size: 10px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 10px;
 `
 
 export const CoffeeInfoWrapper = styled.div`
-    margin-bottom: 2.0625rem;
+  margin-bottom: 2.0625rem;
 
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 `
 
 export const CoffeeTitle = styled.h4`
-    text-align: center;
-    font-family: 'Baloo 2', monospace;
-    font-size: 20px;
+  text-align: center;
+  font-family: 'Baloo 2', monospace;
+  font-size: 20px;
 
-    color: ${props => props.theme['gray-800']};
+  color: ${(props) => props.theme['gray-800']};
 `
 
 export const CoffeeDescription = styled.span`
-    text-align: center;
+  text-align: center;
 
-    color: ${props => props.theme['gray-450']};
+  color: ${(props) => props.theme['gray-450']};
 
-    font-size: 14px;
-    font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  font-family: 'Roboto', sans-serif;
 `
 
 export const CoffeePricesWrapper = styled.div`
-    display: flex;
-    flex-direction: row;
+  display: flex;
+  flex-direction: row;
 
-    gap: 23px;
+  gap: 23px;
 `
 
 export const CoffeePrice = styled.div`
-    span {
-        color: ${props => props.theme['gray-500']};
-    }
+  span {
+    color: ${(props) => props.theme['gray-500']};
+  }
 
-    .prefix {
-        font-size: 14px;
-        font-family: 'Roboto', sans-serif;
-    }
+  .prefix {
+    font-size: 14px;
+    font-family: 'Roboto', sans-serif;
+  }
 
-    .price {
-        font-size: 24px;
-        font-weight: bolder;
-        font-family: 'Baloo 2', sans-serif;
-    }
+  .price {
+    font-size: 24px;
+    font-weight: bolder;
+    font-family: 'Baloo 2', sans-serif;
+  }
 `
 
 export const CounterCartWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  .counterWrapper {
+    padding: 8px;
+    width: 72px;
+
+    display: flex;
+    justify-content: space-around;
+    gap: 4px;
+
+    border-radius: 6px;
+
+    background-color: ${(props) => props.theme['gray-400']};
+
+    span {
+      font-family: 'Roboto', sans-serif;
+      font-size: 16px;
+    }
+
+    .plus,
+    .minun {
+      cursor: pointer;
+      background: none;
+      border: none;
+      font-weight: bolder;
+      color: ${(props) => props.theme['purple-dark']};
+    }
+  }
+
+  .cartWrapper {
+    padding: 8px;
+
     display: flex;
     align-items: center;
-    gap: 8px;
 
+    background-color: ${(props) => props.theme['purple-dark']};
 
-    .counterWrapper{
-        padding: 8px;
-        width: 72px;
+    border-radius: 6px;
 
-        display: flex;
-        justify-content: space-around;
-        gap: 4px;
-
-        border-radius: 6px;
-
-        background-color: ${props => props.theme['gray-400']};
-
-        span {
-            font-family: 'Roboto', sans-serif;
-            font-size: 16px;
-        }
-
-        .plus, .minun{
-            cursor: pointer;
-            background: none;
-            border: none;
-            font-weight: bolder;
-            color: ${props => props.theme['purple-dark']};
-        }
+    svg {
+      color: ${(props) => props.theme['gray-200']};
     }
-
-    .cartWrapper {
-        padding: 8px;
-
-        display: flex;
-        align-items: center;
-
-        background-color: ${props => props.theme['purple-dark']};
-
-        border-radius: 6px;
-
-        svg {
-            color: ${props => props.theme['gray-200']};
-        }
-    }
-
+  }
 `

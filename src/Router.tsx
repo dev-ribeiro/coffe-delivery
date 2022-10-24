@@ -4,12 +4,12 @@ import { CheckoutPage } from './pages/Checkout'
 import { Home } from './pages/Home'
 
 export function Router() {
-    return (
-        <Routes>
-            <Route path='/' element={<DefaultLayout />}>
-                <Route path='/' element={<Home />} />
-                <Route path='/checkout' element={<CheckoutPage />} />
-            </Route>
-        </Routes>
-    )
+  return (
+    <Routes>
+      <Route path="/" element={<DefaultLayout />}>
+        <Route path="/" element={<Home />} />
+        <Route path="/checkout" element={<CheckoutPage />} />
+      </Route>
+    </Routes>
+  )
 }
