@@ -1,47 +1,57 @@
 import { Bank, CreditCard, CurrencyDollar, MapPinLine, Money } from "phosphor-react";
-import { AdressFormContainer } from "./styles";
+import { AdressesInputWrapper, AdressFormContainer, FormContainer, InforHeaderContainer, PaymentWrapper } from "./styles";
 
 export function AddressForm() {
 
 
     return (
         <AdressFormContainer>
-            <MapPinLine />
-            <h2>Complete seu pedido</h2>
-            <div>
-                <h3>Endereço de entrega</h3>
-                <span>Informe o endereço onde deseja receber seu pedido</span>
-            </div>
-            <form>
-                <input type="number" />
-                <input type="text" />
-                <input type="text" />
+            <InforHeaderContainer>
+                <MapPinLine />
                 <div>
-                    <input type="text" />
-                    <input type="text" />
-                    <input type="text" />
-                    <input type="text" />
-                    <input type="text" />
-                    <input type="text" />
+                    <h3>Endereço de entrega</h3>
+                    <span>Informe o endereço onde deseja receber seu pedido</span>
                 </div>
-                <div>
-                    <CurrencyDollar />
-                    <h3>Pagamento</h3>
-                    <span>Escolha a forma que deseja pagar</span>
-                    <button type="submit">
-                        <CreditCard/>
-                        CARTÃO DE CRÉDITO
-                    </button>
-                    <button type="submit">
-                        <Bank/>
-                        CARTÃO DE DÉBITO
-                    </button>
-                    <button type="submit">
-                        <Money/>
-                        DINHEIRO
-                    </button>
-                </div>
-            </form>
+            </InforHeaderContainer>
+            <FormContainer>
+                <input type="text" placeholder="CEP" className="cep" />
+                <input type="text" placeholder="Rua" />
+                <AdressesInputWrapper>
+                    <div>
+                        <input type="number" className="address" placeholder="Número" />
+                        <input type="text" name="complement" className="complement" placeholder="Complemento" />
+                        <label htmlFor="complement">Opcional</label>
+                    </div>
+                    <div>
+                        <input type="text" className="district" placeholder="Bairro" />
+                        <input type="text" className="city" placeholder="Cidade" />
+                        <input type="text" className="state" placeholder="UF" />
+                    </div>
+                </AdressesInputWrapper>
+                <PaymentWrapper>
+                    <header>
+                        <CurrencyDollar size={22} />
+                        <div>
+                            <h3>Pagamento</h3>
+                            <span>O pagamento é feito na entrega. Escolha a forma que deseja pagar.</span>
+                        </div>
+                    </header>
+                    <div className="payment-options">
+                        <button type="submit">
+                            <CreditCard size={16} />
+                            CARTÃO DE CRÉDITO
+                        </button>
+                        <button type="submit">
+                            <Bank size={16} />
+                            CARTÃO DE DÉBITO
+                        </button>
+                        <button type="submit">
+                            <Money size={16} />
+                            DINHEIRO
+                        </button>
+                    </div>
+                </PaymentWrapper>
+            </FormContainer>
         </AdressFormContainer>
     )
 }
