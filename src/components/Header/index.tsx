@@ -14,13 +14,15 @@ export function Header() {
 
   return (
     <HeaderContainer>
-      <img src={logo} alt="" />
+      <a href="/">
+        <img src={logo} alt="" />
+      </a>
       <ShoppingCartContainer>
         <LocationContainer>
           <MapPin size={22} weight="fill" />
           <span>Fortaleza - Ce</span>
         </LocationContainer>
-        {count != 0 ? (
+        {count !== 0 ? (
           <CartWrapper>
             <a className="cart" href="/checkout">
               <ShoppingCart size={22} weight="fill" />
