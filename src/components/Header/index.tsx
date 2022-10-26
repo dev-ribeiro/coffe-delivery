@@ -1,6 +1,7 @@
 import { MapPin, ShoppingCart } from 'phosphor-react'
 import { useContext } from 'react'
-import { CoffeeCounterContext } from '../../contexts/CoffeeContexts'
+import { NavLink } from 'react-router-dom'
+import { CoffeeCounterContext } from '../../contexts/CoffeeContext'
 import logo from '../../images/logo.svg'
 import {
   CartWrapper,
@@ -24,15 +25,15 @@ export function Header() {
         </LocationContainer>
         {count !== 0 ? (
           <CartWrapper>
-            <a className="cart" href="/checkout">
+            <NavLink className="cart" to="/checkout">
               <ShoppingCart size={22} weight="fill" />
-            </a>
+            </NavLink>
             <span>{count}</span>
           </CartWrapper>
         ) : (
-          <a className="cart" href="/checkout">
+          <NavLink className="cart" to="/checkout">
             <ShoppingCart size={22} weight="fill" />
-          </a>
+          </NavLink>
         )}
       </ShoppingCartContainer>
     </HeaderContainer>
