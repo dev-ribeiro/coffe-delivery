@@ -8,20 +8,20 @@ export interface ICoffees {
   amountSelected?: number
 }
 
-export const CoffeeCounterContext = createContext(
-  {} as ICoffeeCounterContextType,
-)
-
-interface ICoffeeCounterContextProviderProps {
-  children: ReactNode
-}
-
 interface ICoffeeCounterContextType {
   count: number
   coffees: ICoffees[]
   addCoffeeToCart: () => void
   removeCoffeeToCart: () => void
   updateCoffesData: (data: ICoffees[]) => void
+}
+
+export const CoffeeCounterContext = createContext(
+  {} as ICoffeeCounterContextType,
+)
+
+interface ICoffeeCounterContextProviderProps {
+  children: ReactNode
 }
 
 export function CoffeeCounterContextProvider({
