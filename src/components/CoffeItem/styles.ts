@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const CoffeeItemContainer = styled.section`
+export const CoffeeItemContainerStore = styled.section`
   width: 16rem;
 
   padding: 20px;
@@ -26,6 +26,9 @@ export const CoffeeItemContainer = styled.section`
 
 export const CoffeeCategoriesWrapper = styled.div`
   margin: 12px 0;
+
+  display: flex;
+  gap: 8px;
 `
 
 export const CoffeeCategories = styled.span`
@@ -45,24 +48,25 @@ export const CoffeeInfoWrapper = styled.div`
 
   display: flex;
   flex-direction: column;
-  gap: 8px;
-`
+  align-content: space-around;
+  gap: 8px 0;
 
-export const CoffeeTitle = styled.h4`
-  text-align: center;
-  font-family: 'Baloo 2', monospace;
-  font-size: 20px;
+  h4 {
+    text-align: center;
+    font-family: 'Baloo 2', monospace;
+    font-size: 20px;
 
-  color: ${(props) => props.theme['gray-800']};
-`
+    color: ${(props) => props.theme['gray-800']};
+  }
 
-export const CoffeeDescription = styled.span`
-  text-align: center;
+  span {
+    text-align: center;
 
-  color: ${(props) => props.theme['gray-450']};
+    color: ${(props) => props.theme['gray-450']};
 
-  font-size: 14px;
-  font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    font-family: 'Roboto', sans-serif;
+  }
 `
 
 export const CoffeePricesWrapper = styled.div`
@@ -136,3 +140,5 @@ export const CounterCartWrapper = styled.div`
     }
   }
 `
+
+export const CoffeeItemContainerCheckout = styled.div``

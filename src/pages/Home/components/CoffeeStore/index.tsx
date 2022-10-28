@@ -1,11 +1,11 @@
 import { useContext, useEffect } from 'react'
-import { CoffeeItem } from '../CoffeItem'
+import { CoffeeItem } from '../../../../components/CoffeItem'
 import { CoffeeStroreContainer, StoreContainer } from './styles'
 import coffesData from '../../../../data/data.json'
 import {
   CoffeeCounterContext,
   ICoffees,
-} from '../../../../contexts/CoffeeContexts'
+} from '../../../../contexts/CoffeeContext'
 
 export function CoffeeStrore() {
   const { coffees, updateCoffesData } = useContext(CoffeeCounterContext)
@@ -14,7 +14,9 @@ export function CoffeeStrore() {
     const db: ICoffees[] = coffesData
 
     updateCoffesData(db)
-  }, [])
+  }, [updateCoffesData])
+
+  console.log(coffees)
 
   return (
     <CoffeeStroreContainer>
@@ -28,6 +30,7 @@ export function CoffeeStrore() {
               title={coffee.title}
               image_path={coffee.image_path}
               description={coffee.description}
+              layout="store"
             />
           )
         })}
