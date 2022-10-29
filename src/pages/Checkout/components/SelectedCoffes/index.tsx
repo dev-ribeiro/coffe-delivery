@@ -29,12 +29,18 @@ export function SelectedCoffes() {
         }
       })}
       <BillContainer>
-        <span>Total de itens</span>
-        <span>R$ 9,90</span>
-        <span>Entrega</span>
-        <span>R$ 9,90</span>
-        <h5>TOTAL</h5>
-        <h5>R$ 19,80</h5>
+        <div>
+          <span>Total de itens</span>
+          <span>R$ 9,90</span>
+        </div>
+        <div>
+          <span>Entrega</span>
+          <span>R$ 9,90</span>
+        </div>
+        <div>
+          <h5>Total</h5>
+          <h5>R$ 19,80</h5>
+        </div>
       </BillContainer>
     </SelectedCoffesContainer>
   )

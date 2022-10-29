@@ -5,10 +5,29 @@ export const SelectedCoffesContainer = styled.section`
 `
 
 export const BillContainer = styled.div`
-  width: 100%;
+  margin-top: 24px;
+  width: 368px;
 
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  justify-content: space-between;
-  justify-items: stretch;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  * {
+    font-family: 'Roboto', sans-serif;
+  }
+
+  div {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+
+    span {
+      font-size: 14px;
+    }
+
+    h5 {
+      color: ${(props) => props.theme['gray-800']};
+      font-size: 20px;
+    }
+  }
 `
