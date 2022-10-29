@@ -4,6 +4,14 @@ export const SelectedCoffesContainer = styled.section`
   padding: 2.5rem;
 `
 
+export const CartCoffeesCheckoutWrapper = styled.div`
+  padding: 2.5rem;
+  width: 28rem;
+
+  background-color: ${(props) => props.theme['gray-350']};
+  border-radius: 6px 44px;
+`
+
 export const BillContainer = styled.div`
   margin-top: 24px;
   width: 368px;
