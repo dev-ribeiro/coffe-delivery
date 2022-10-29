@@ -39,3 +39,17 @@ export const BillContainer = styled.div`
     }
   }
 `
+
+export const SubmitButton = styled.button`
+  width: 100%;
+  padding: 12px 8px;
+  margin-top: 24px;
+
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  color: ${(props) => props.theme.white};
+  background-color: ${(props) => props.theme['yellow-dark']};
+`

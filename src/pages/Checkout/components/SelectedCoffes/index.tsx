@@ -8,6 +8,7 @@ import {
   BillContainer,
   CartCoffeesCheckoutWrapper,
   SelectedCoffesContainer,
+  SubmitButton,
 } from './styles'
 
 export function SelectedCoffes() {
@@ -47,6 +48,7 @@ export function SelectedCoffes() {
             <h5>R$ 19,80</h5>
           </div>
         </BillContainer>
+        <SubmitButton type="submit">CONFIRMAR PEDIDO</SubmitButton>
       </CartCoffeesCheckoutWrapper>
     </SelectedCoffesContainer>
   )
