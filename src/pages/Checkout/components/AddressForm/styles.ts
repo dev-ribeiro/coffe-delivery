@@ -38,7 +38,6 @@ export const FormContainer = styled.form`
   gap: 16px;
 
   input {
-    flex: 1;
     height: 42px;
     padding: 0.75rem;
 

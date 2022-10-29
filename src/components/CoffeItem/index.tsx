@@ -1,14 +1,18 @@
 /* eslint-disable camelcase */
-import { ShoppingCart } from 'phosphor-react'
+import { ShoppingCart, Trash } from 'phosphor-react'
 import {
+  CoffeeCartWrapper,
   CoffeeCategories,
   CoffeeCategoriesWrapper,
+  CoffeeCheckoutHeaderContainer,
   CoffeeInfoWrapper,
   CoffeeItemContainerCheckout,
   CoffeeItemContainerStore,
   CoffeePrice,
   CoffeePricesWrapper,
   CounterCartWrapper,
+  CounterCartWrapperInCheckout,
+  CounterCheckoutContainer,
 } from './styles'
 import { useContext } from 'react'
 import { CoffeeCounterContext, ICoffees } from '../../contexts/CoffeeContext'
@@ -67,6 +71,23 @@ export function CoffeeItem({
       ) : (
         <CoffeeItemContainerCheckout>
           <img src={image_path} alt="" />
+          <CoffeeCartWrapper>
+            <CoffeeCheckoutHeaderContainer>
+              <h4>{title}</h4>
+              <span>9,90</span>
+            </CoffeeCheckoutHeaderContainer>
+            <CounterCheckoutContainer>
+              <CounterCartWrapperInCheckout>
+                <button>-</button>
+                <span>1</span>
+                <button>+</button>
+              </CounterCartWrapperInCheckout>
+              <button>
+                <Trash size={16} />
+                <span>REMOVER</span>
+              </button>
+            </CounterCheckoutContainer>
+          </CoffeeCartWrapper>
         </CoffeeItemContainerCheckout>
       )}
     </>

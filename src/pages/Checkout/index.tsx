@@ -1,11 +1,12 @@
 import { AddressForm } from './components/AddressForm'
+import { SelectedCoffes } from './components/SelectedCoffes'
 import { CheckoutContainer } from './styles'
 
 export function CheckoutPage() {
   return (
     <CheckoutContainer>
-      <h2>Complete seu pedido</h2>
       <AddressForm />
+      <SelectedCoffes />
     </CheckoutContainer>
   )
 }
