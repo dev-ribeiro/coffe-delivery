@@ -76,3 +76,63 @@ export const Input = styled.input<InputProps>`
     font-family: 'Roboto', sans-serif;
   }
 `
+
+export const PaymentMethodContainer = styled.div`
+  margin-top: 12px;
+  padding: 40px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 32px 0;
+
+  font-family: 'Roboto', sans-serif;
+  background: ${(props) => props.theme['gray-200']};
+  border-radius: 6px;
+`
+
+export const PaymentInfoWrapper = styled.header`
+  display: flex;
+  gap: 8px;
+
+  svg {
+    color: ${(props) => props.theme.purple};
+  }
+
+  h3 {
+    font-weight: 500;
+    font-size: 1rem;
+    color: ${(props) => props.theme['gray-800']};
+  }
+
+  span {
+    font-size: 0.875rem;
+    color: ${(props) => props.theme['gray-500']};
+  }
+`
+
+export const PaymentOptionsWrapper = styled.div`
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+
+  button {
+    padding: 16px;
+    gap: 12px;
+
+    display: flex;
+    align-items: center;
+
+    border: none;
+    background: ${(props) => props.theme['gray-350']};
+
+    svg {
+      color: ${(props) => props.theme.purple};
+    }
+
+    span {
+      font-size: 12px;
+      line-height: 160%;
+      color: ${(props) => props.theme['gray-500']};
+    }
+  }
+`

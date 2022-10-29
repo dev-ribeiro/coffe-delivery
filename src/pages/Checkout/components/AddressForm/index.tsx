@@ -11,6 +11,9 @@ import {
   FormInfoAndInputsWrapper,
   FormInputsWrapper,
   Input,
+  PaymentInfoWrapper,
+  PaymentMethodContainer,
+  PaymentOptionsWrapper,
 } from './styles'
 
 export function AddressForm() {
@@ -47,8 +50,8 @@ export function AddressForm() {
             <Input type="text" placeholder="UF" inputName="state" />
           </FormInputsWrapper>
         </FormInfoAndInputsWrapper>
-        <div>
-          <header>
+        <PaymentMethodContainer>
+          <PaymentInfoWrapper>
             <CurrencyDollar size={22} />
             <div>
               <h3>Pagamento</h3>
@@ -57,22 +60,22 @@ export function AddressForm() {
                 pagar.
               </span>
             </div>
-          </header>
-          <div className="payment-options">
+          </PaymentInfoWrapper>
+          <PaymentOptionsWrapper>
             <button type="submit">
               <CreditCard size={16} />
-              CARTÃO DE CRÉDITO
+              <span>CARTÃO DE CRÉDITO</span>
             </button>
             <button type="submit">
               <Bank size={16} />
-              CARTÃO DE DÉBITO
+              <span>CARTÃO DE DÉBITO</span>
             </button>
             <button type="submit">
               <Money size={16} />
-              DINHEIRO
+              <span>DINHEIRO</span>
             </button>
-          </div>
-        </div>
+          </PaymentOptionsWrapper>
+        </PaymentMethodContainer>
       </form>
     </AdressFormContainer>
   )
