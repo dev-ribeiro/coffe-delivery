@@ -5,46 +5,31 @@ import {
   MapPinLine,
   Money,
 } from 'phosphor-react'
-import {
-  AdressesInputWrapper,
-  AdressFormContainer,
-  FormContainer,
-  InforHeaderContainer,
-  PaymentWrapper,
-} from './styles'
+import { AdressFormContainer, AdressFormInfo } from './styles'
 
 export function AddressForm() {
   return (
     <AdressFormContainer>
       <h2>Complete seu pedido</h2>
-      <InforHeaderContainer>
-        <MapPinLine />
+      <form>
+        <AdressFormInfo>
+          <MapPinLine size={22} />
+          <div>
+            <h3>Endereço de entrega</h3>
+            <span>Informe o endereço onde deseja receber seu pedido</span>
+          </div>
+        </AdressFormInfo>
         <div>
-          <h3>Endereço de entrega</h3>
-          <span>Informe o endereço onde deseja receber seu pedido</span>
+          <input type="text" placeholder="CEP" className="cep" />
+          <input type="text" placeholder="Rua" />
+          <input type="number" className="address" placeholder="Número" />
+          <input type="text" className="complement" placeholder="Complemento" />
+          {/* <label htmlFor="complement">Opcional</label> */}
+          <input type="text" className="district" placeholder="Bairro" />
+          <input type="text" className="city" placeholder="Cidade" />
+          <input type="text" className="state" placeholder="UF" />
         </div>
-      </InforHeaderContainer>
-      <FormContainer>
-        <input type="text" placeholder="CEP" className="cep" />
-        <input type="text" placeholder="Rua" />
-        <AdressesInputWrapper>
-          <div>
-            <input type="number" className="address" placeholder="Número" />
-            <input
-              type="text"
-              name="complement"
-              className="complement"
-              placeholder="Complemento"
-            />
-            <label htmlFor="complement">Opcional</label>
-          </div>
-          <div>
-            <input type="text" className="district" placeholder="Bairro" />
-            <input type="text" className="city" placeholder="Cidade" />
-            <input type="text" className="state" placeholder="UF" />
-          </div>
-        </AdressesInputWrapper>
-        <PaymentWrapper>
+        <div>
           <header>
             <CurrencyDollar size={22} />
             <div>
@@ -69,8 +54,8 @@ export function AddressForm() {
               DINHEIRO
             </button>
           </div>
-        </PaymentWrapper>
-      </FormContainer>
+        </div>
+      </form>
     </AdressFormContainer>
   )
 }
