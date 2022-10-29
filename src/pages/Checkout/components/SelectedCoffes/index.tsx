@@ -1,10 +1,6 @@
 import { useContext, useEffect, useState } from 'react'
 import { CoffeeItem } from '../../../../components/CoffeItem'
 import {
-  CoffeeCounterContext,
-  ICoffees,
-} from '../../../../contexts/CoffeeContext'
-import {
   BillContainer,
   CartCoffeesCheckoutWrapper,
   SelectedCoffesContainer,
@@ -12,13 +8,13 @@ import {
 } from './styles'
 
 export function SelectedCoffes() {
-  const { coffees } = useContext(CoffeeCounterContext)
+  //   const { coffees } = useContext(CoffeeCounterContext)
 
   return (
     <SelectedCoffesContainer>
       <h2>Cafés selecionados</h2>
       <CartCoffeesCheckoutWrapper>
-        {coffees.map((coffee, index) => {
+        {/* {coffees.map((coffee, index) => {
           if (index <= 1) {
             return (
               <CoffeeItem
@@ -33,7 +29,7 @@ export function SelectedCoffes() {
           } else {
             return <></>
           }
-        })}
+        })} */}
         <BillContainer>
           <div>
             <span>Total de itens</span>

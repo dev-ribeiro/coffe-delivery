@@ -14,22 +14,31 @@ import {
   CounterCartWrapperInCheckout,
   CounterCheckoutContainer,
 } from './styles'
-import { useContext } from 'react'
-import { CoffeeCounterContext, ICoffees } from '../../contexts/CoffeeContext'
+import { useContext, useEffect, useState } from 'react'
+import { CoffeeContext, ICoffees } from '../../contexts/CoffeeContext'
 
 interface ICoffeesItemProps extends ICoffees {
   layout?: 'store' | 'checkout'
 }
 
 export function CoffeeItem({
+  id,
   categories,
   description,
   image_path,
   title,
+  amountSelected,
   layout,
 }: ICoffeesItemProps) {
-  const { addCoffeeToCart, removeCoffeeToCart } =
-    useContext(CoffeeCounterContext)
+  const { handleAmountSelecteds, selectedCoffees } = useContext(CoffeeContext)
+
+  const onAddItem = () => {
+    handleAmountSelecteds(id, 'sum')
+  }
+
+  const onRemoveItem = () => {
+    handleAmountSelecteds(id, 'decrease')
+  }
 
   return (
     <>
@@ -54,11 +63,11 @@ export function CoffeeItem({
             </CoffeePrice>
             <CounterCartWrapper>
               <div className="counterWrapper">
-                <button className="minun" onClick={removeCoffeeToCart}>
+                <button className="minun" onClick={onRemoveItem}>
                   -
                 </button>
-                <span className="counter">1</span>
-                <button className="plus" onClick={addCoffeeToCart}>
+                <span className="counter">{amountSelected}</span>
+                <button className="plus" onClick={onAddItem}>
                   +
                 </button>
               </div>

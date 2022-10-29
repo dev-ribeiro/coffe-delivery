@@ -2,57 +2,78 @@ import { createContext, ReactNode, useState } from 'react'
 
 export interface ICoffees {
   categories: string[]
+  id: string
   title: string
   description: string
   image_path: string
-  amountSelected?: number
+  amountSelected: number
 }
 
-interface ICoffeeCounterContextType {
-  count: number
+interface ICoffeeContextType {
   coffees: ICoffees[]
-  addCoffeeToCart: () => void
-  removeCoffeeToCart: () => void
+  selectedCoffees: ICoffees[]
   updateCoffesData: (data: ICoffees[]) => void
+  handleAmountSelecteds: (id: string, operation: 'sum' | 'decrease') => void
 }
 
-export const CoffeeCounterContext = createContext(
-  {} as ICoffeeCounterContextType,
-)
+export const CoffeeContext = createContext({} as ICoffeeContextType)
 
-interface ICoffeeCounterContextProviderProps {
+interface ICoffeeContextProviderProps {
   children: ReactNode
 }
 
-export function CoffeeCounterContextProvider({
+export function CoffeeContextProvider({
   children,
-}: ICoffeeCounterContextProviderProps) {
+}: ICoffeeContextProviderProps) {
   const [coffees, setCoffees] = useState<ICoffees[]>([])
-  const [count, setCount] = useState(0)
+  const [selectedCoffees, setSelectedCoffees] = useState<ICoffees[]>([])
 
-  function addCoffeeToCart() {
-    setCount((state) => state + 1)
-  }
-
-  function removeCoffeeToCart() {
-    setCount((state) => state - 1)
-  }
-
-  function updateCoffesData(data: ICoffees[]) {
+  const updateCoffesData = (data: ICoffees[]) => {
     setCoffees(data)
   }
 
+  const handleAmountSelecteds = (id: string, operation: 'sum' | 'decrease') => {
+    if (operation === 'sum') {
+      const addCoffes = coffees.map((coffee) => {
+        if (coffee.id === id) {
+          return { ...coffee, amountSelected: coffee.amountSelected + 1 }
+        } else {
+          return coffee
+        }
+      })
+      setCoffees(addCoffes)
+    }
+
+    if (operation === 'decrease') {
+      const decreaseCoffes = coffees.map((coffee) => {
+        if (coffee.id === id) {
+          return { ...coffee, amountSelected: coffee.amountSelected + 1 }
+        } else {
+          return coffee
+        }
+      })
+      setCoffees(decreaseCoffes)
+    }
+  }
+
+  const sendCoffeesToCheckout = () => {
+    const findPurchases: ICoffees[] = coffees.filter((coffee) => {
+      return coffee.amountSelected !== 0
+    })
+
+    setSelectedCoffees(findPurchases)
+  }
+
   return (
-    <CoffeeCounterContext.Provider
+    <CoffeeContext.Provider
       value={{
-        count,
         coffees,
-        addCoffeeToCart,
-        removeCoffeeToCart,
+        selectedCoffees,
         updateCoffesData,
+        handleAmountSelecteds,
       }}
     >
       {children}
-    </CoffeeCounterContext.Provider>
+    </CoffeeContext.Provider>
   )
 }
