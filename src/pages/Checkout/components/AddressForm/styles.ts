@@ -37,7 +37,7 @@ export const AdressFormInfo = styled.header`
 const INPUTS_NAME = {
   cep: 'cep',
   street: 'street',
-  adress: 'adress',
+  address: 'address',
   complement: 'complement',
   district: 'district',
   city: 'city',

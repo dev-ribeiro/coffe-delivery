@@ -5,8 +5,8 @@ import {
   MapPinLine,
   Money,
 } from 'phosphor-react'
-import { useContext } from 'react'
-import { FormAdressContext } from '../../../../contexts/FormAdressContext'
+import { FieldValues, useForm, UseFormRegister } from 'react-hook-form'
+import { addressFormData } from '../..'
 import {
   AdressFormContainer,
   AdressFormInfo,
@@ -18,9 +18,11 @@ import {
   PaymentOptionsWrapper,
 } from './styles'
 
-export function AddressForm() {
-  //   const { adressInfo } = useContext(FormAdressContext)
+interface IAdressForm {
+  register: UseFormRegister<addressFormData>
+}
 
+export function AddressForm({ register }: IAdressForm) {
   return (
     <AdressFormContainer>
       <h2>Complete seu pedido</h2>
@@ -38,19 +40,51 @@ export function AddressForm() {
             placeholder="CEP"
             inputName="cep"
             className="cep"
+            required
+            {...register('cep')}
           />
-          <Input type="text" placeholder="Rua" inputName="street" />
-          <Input type="number" placeholder="Número" inputName="adress" />
+          <Input
+            type="text"
+            placeholder="Rua"
+            inputName="street"
+            required
+            {...register('street')}
+          />
+          <Input
+            type="number"
+            placeholder="Número"
+            inputName="address"
+            required
+            {...register('address')}
+          />
           <Input
             type="text"
             placeholder="Complemento"
             inputName="complement"
             className="complement"
+            {...register('complement')}
           />
-          {/* <label htmlFor="complement">Opcional</label> */}
-          <Input type="text" placeholder="Bairro" inputName="district" />
-          <Input type="text" placeholder="Cidade" inputName="city" />
-          <Input type="text" placeholder="UF" inputName="state" />
+          <Input
+            type="text"
+            placeholder="Bairro"
+            inputName="district"
+            required
+            {...register('district')}
+          />
+          <Input
+            type="text"
+            placeholder="Cidade"
+            inputName="city"
+            required
+            {...register('city')}
+          />
+          <Input
+            type="text"
+            placeholder="UF"
+            inputName="state"
+            required
+            {...register('state')}
+          />
         </FormInputsWrapper>
       </FormInfoAndInputsWrapper>
       <PaymentMethodContainer>
