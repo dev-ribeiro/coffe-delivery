@@ -5,6 +5,8 @@ import {
   MapPinLine,
   Money,
 } from 'phosphor-react'
+import { useContext } from 'react'
+import { FormAdressContext } from '../../../../contexts/FormAdressContext'
 import {
   AdressFormContainer,
   AdressFormInfo,
@@ -17,6 +19,8 @@ import {
 } from './styles'
 
 export function AddressForm() {
+  //   const { adressInfo } = useContext(FormAdressContext)
+
   return (
     <AdressFormContainer>
       <h2>Complete seu pedido</h2>
