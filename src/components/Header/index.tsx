@@ -16,9 +16,9 @@ export function Header() {
 
   return (
     <HeaderContainer>
-      <a href="/">
+      <NavLink to="/">
         <img src={logo} alt="" />
-      </a>
+      </NavLink>
       <ShoppingCartContainer>
         <LocationContainer>
           <MapPin size={22} weight="fill" />

@@ -30,8 +30,11 @@ export function CoffeeItem({
   amountSelected,
   layout,
 }: ICoffeesItemProps) {
-  const { handleAmountSelecteds, verifyCoffeesToCheckout } =
-    useContext(CoffeeContext)
+  const {
+    handleAmountSelecteds,
+    verifyCoffeesToCheckout,
+    removeCoffeeToCheckout,
+  } = useContext(CoffeeContext)
 
   verifyCoffeesToCheckout()
 
@@ -41,6 +44,10 @@ export function CoffeeItem({
 
   const onRemoveItem = () => {
     handleAmountSelecteds(id, 'decrease')
+  }
+
+  const onRemoveToCart = () => {
+    removeCoffeeToCheckout(id)
   }
 
   return (
@@ -86,17 +93,19 @@ export function CoffeeItem({
           <CoffeeCartWrapper>
             <CoffeeCheckoutHeaderContainer>
               <h4>{title}</h4>
-              <span>9,90</span>
+              <span>
+                {(amountSelected * 9.9).toFixed(2).toString().replace('.', ',')}
+              </span>
             </CoffeeCheckoutHeaderContainer>
             <CounterCheckoutContainer>
               <CounterCartWrapperInCheckout>
-                <button>-</button>
-                <span>1</span>
-                <button>+</button>
+                <button onClick={onRemoveItem}>-</button>
+                <span>{amountSelected}</span>
+                <button onClick={onAddItem}>+</button>
               </CounterCartWrapperInCheckout>
               <button>
                 <Trash size={16} />
-                <span>REMOVER</span>
+                <span onClick={onRemoveToCart}>REMOVER</span>
               </button>
             </CounterCheckoutContainer>
           </CoffeeCartWrapper>

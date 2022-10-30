@@ -14,6 +14,7 @@ interface ICoffeeContextType {
   updateCoffesData: (data: ICoffees[]) => void
   handleAmountSelecteds: (id: string, operation: 'sum' | 'decrease') => void
   verifyCoffeesToCheckout: () => ICoffees[]
+  removeCoffeeToCheckout: (id: string) => void
 }
 
 export const CoffeeContext = createContext({} as ICoffeeContextType)
@@ -64,6 +65,18 @@ export function CoffeeContextProvider({
     return selectedCoffes
   }
 
+  const removeCoffeeToCheckout = (id: string) => {
+    const update = coffees.map((coffee) => {
+      if (coffee.id === id) {
+        return { ...coffee, amountSelected: 0 }
+      } else {
+        return coffee
+      }
+    })
+
+    setCoffees(update)
+  }
+
   return (
     <CoffeeContext.Provider
       value={{
@@ -71,6 +84,7 @@ export function CoffeeContextProvider({
         updateCoffesData,
         handleAmountSelecteds,
         verifyCoffeesToCheckout,
+        removeCoffeeToCheckout,
       }}
     >
       {children}
