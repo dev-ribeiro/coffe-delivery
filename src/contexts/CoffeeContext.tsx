@@ -11,9 +11,9 @@ export interface ICoffees {
 
 interface ICoffeeContextType {
   coffees: ICoffees[]
-  selectedCoffees: ICoffees[]
   updateCoffesData: (data: ICoffees[]) => void
   handleAmountSelecteds: (id: string, operation: 'sum' | 'decrease') => void
+  verifyCoffeesToCheckout: () => ICoffees[]
 }
 
 export const CoffeeContext = createContext({} as ICoffeeContextType)
@@ -26,7 +26,6 @@ export function CoffeeContextProvider({
   children,
 }: ICoffeeContextProviderProps) {
   const [coffees, setCoffees] = useState<ICoffees[]>([])
-  const [selectedCoffees, setSelectedCoffees] = useState<ICoffees[]>([])
 
   const updateCoffesData = (data: ICoffees[]) => {
     setCoffees(data)
@@ -41,6 +40,7 @@ export function CoffeeContextProvider({
           return coffee
         }
       })
+
       setCoffees(addCoffes)
     }
 
@@ -56,21 +56,21 @@ export function CoffeeContextProvider({
     }
   }
 
-  const sendCoffeesToCheckout = () => {
-    const findPurchases: ICoffees[] = coffees.filter((coffee) => {
-      return coffee.amountSelected !== 0
-    })
+  const verifyCoffeesToCheckout = () => {
+    const selectedCoffes: ICoffees[] = coffees.filter(
+      (coffee) => coffee.amountSelected !== 0,
+    )
 
-    setSelectedCoffees(findPurchases)
+    return selectedCoffes
   }
 
   return (
     <CoffeeContext.Provider
       value={{
         coffees,
-        selectedCoffees,
         updateCoffesData,
         handleAmountSelecteds,
+        verifyCoffeesToCheckout,
       }}
     >
       {children}

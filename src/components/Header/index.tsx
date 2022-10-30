@@ -1,5 +1,7 @@
 import { MapPin, ShoppingCart } from 'phosphor-react'
+import { useContext } from 'react'
 import { NavLink } from 'react-router-dom'
+import { CoffeeContext } from '../../contexts/CoffeeContext'
 import logo from '../../images/logo.svg'
 import {
   CartWrapper,
@@ -9,8 +11,8 @@ import {
 } from './styles'
 
 export function Header() {
-  //   const { count } = useContext(CoffeeCounterContext)
-  const count = 0 ?? 1
+  const { verifyCoffeesToCheckout } = useContext(CoffeeContext)
+  const count = verifyCoffeesToCheckout().length
 
   return (
     <HeaderContainer>

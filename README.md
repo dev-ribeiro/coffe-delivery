@@ -2,7 +2,7 @@
 
 ## Requisitos
 
-    [ ] Listagem de produtos (cafés) disponíveis para compra
+    [ x ] Listagem de produtos (cafés) disponíveis para compra
     [ ] Adicionar uma quantidade específicas de itens no carrinho
     [ ] Aumentar ou remover a quantidade de itens no carrinho
     [ ] Formulário para o usuário preencher o seu endereço

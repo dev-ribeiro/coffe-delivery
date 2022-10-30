@@ -14,7 +14,7 @@ import {
   CounterCartWrapperInCheckout,
   CounterCheckoutContainer,
 } from './styles'
-import { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { CoffeeContext, ICoffees } from '../../contexts/CoffeeContext'
 
 interface ICoffeesItemProps extends ICoffees {
@@ -30,10 +30,13 @@ export function CoffeeItem({
   amountSelected,
   layout,
 }: ICoffeesItemProps) {
-  const { handleAmountSelecteds, selectedCoffees } = useContext(CoffeeContext)
+  const { handleAmountSelecteds, verifyCoffeesToCheckout } =
+    useContext(CoffeeContext)
+
+  verifyCoffeesToCheckout()
 
   const onAddItem = () => {
-    handleAmountSelecteds(id, 'sum')
+    handleAmountSelecteds(id, 'decrease')
   }
 
   const onRemoveItem = () => {
