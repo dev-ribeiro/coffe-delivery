@@ -53,7 +53,7 @@ export const FormInputsWrapper = styled.div`
   grid-template:
     'cep cep cep' 42px
     'street street street' 42px
-    'adress complement complement' 42px
+    'address complement complement' 42px
     'district city state' 42px/
     1fr 1fr 60px;
   gap: 16px;

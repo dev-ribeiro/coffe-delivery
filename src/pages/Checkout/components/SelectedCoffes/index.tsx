@@ -1,4 +1,5 @@
 import { useContext, useEffect, useState } from 'react'
+import { NavLink } from 'react-router-dom'
 import { CoffeeItem } from '../../../../components/CoffeItem'
 import { CoffeeContext } from '../../../../contexts/CoffeeContext'
 import {
@@ -48,7 +49,9 @@ export function SelectedCoffes() {
             <h5>{(finalPrice + 5).toFixed(2).toString().replace('.', ',')}</h5>
           </div>
         </BillContainer>
-        <SubmitButton type="submit">CONFIRMAR PEDIDO</SubmitButton>
+        <NavLink to={'/success'}>
+          <SubmitButton type="submit">CONFIRMAR PEDIDO</SubmitButton>
+        </NavLink>
       </CartCoffeesCheckoutWrapper>
     </SelectedCoffesContainer>
   )
