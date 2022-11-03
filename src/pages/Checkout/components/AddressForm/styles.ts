@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import * as RadioGroup from '@radix-ui/react-radio-group'
 
 export const AdressFormContainer = styled.section`
   padding: 2.5rem;
@@ -77,7 +78,7 @@ export const Input = styled.input<InputProps>`
   }
 `
 
-export const PaymentMethodContainer = styled.div`
+export const PaymentMethodContainer = styled(RadioGroup.Root)`
   margin-top: 12px;
   padding: 40px;
 
@@ -112,17 +113,18 @@ export const PaymentInfoWrapper = styled.header`
 
 export const PaymentOptionsWrapper = styled.div`
   display: flex;
-  gap: 12px;
+  gap: 0.75rem;
   justify-content: center;
 
   button {
-    padding: 16px;
-    gap: 12px;
+    padding: 1rem;
+    gap: 0.75rem;
 
     display: flex;
     align-items: center;
 
     border: none;
+    border-radius: 6px;
     background: ${(props) => props.theme['gray-350']};
 
     svg {
@@ -133,6 +135,11 @@ export const PaymentOptionsWrapper = styled.div`
       font-size: 12px;
       line-height: 160%;
       color: ${(props) => props.theme['gray-500']};
+    }
+
+    &[data-state='checked'] {
+      border: 1px solid ${(props) => props.theme.purple};
+      background: ${(props) => props.theme['purple-light']};
     }
   }
 `

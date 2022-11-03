@@ -7,6 +7,7 @@ import {
 } from 'phosphor-react'
 import { FieldValues, useForm, UseFormRegister } from 'react-hook-form'
 import { addressFormData } from '../..'
+import * as RadioGroup from '@radix-ui/react-radio-group'
 import {
   AdressFormContainer,
   AdressFormInfo,
@@ -98,18 +99,24 @@ export function AddressForm({ register }: IAdressForm) {
           </div>
         </PaymentInfoWrapper>
         <PaymentOptionsWrapper>
-          <button type="submit">
-            <CreditCard size={16} />
-            <span>CARTÃO DE CRÉDITO</span>
-          </button>
-          <button type="submit">
-            <Bank size={16} />
-            <span>CARTÃO DE DÉBITO</span>
-          </button>
-          <button type="submit">
-            <Money size={16} />
-            <span>DINHEIRO</span>
-          </button>
+          <RadioGroup.Item value="credit" asChild>
+            <button>
+              <CreditCard size={16} />
+              <span>CARTÃO DE CRÉDITO</span>
+            </button>
+          </RadioGroup.Item>
+          <RadioGroup.Item value="debit" asChild>
+            <button>
+              <Bank size={16} />
+              <span>CARTÃO DE DÉBITO</span>
+            </button>
+          </RadioGroup.Item>
+          <RadioGroup.Item value="cash" asChild>
+            <button>
+              <Money size={16} />
+              <span>DINHEIRO</span>
+            </button>
+          </RadioGroup.Item>
         </PaymentOptionsWrapper>
       </PaymentMethodContainer>
     </AdressFormContainer>
