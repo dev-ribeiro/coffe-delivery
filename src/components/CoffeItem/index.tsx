@@ -16,6 +16,7 @@ import {
 } from './styles'
 import React, { useContext, useEffect, useState } from 'react'
 import { CoffeeContext, ICoffees } from '../../contexts/CoffeeContext'
+import { priceFormatter } from '../../utils/formatter'
 
 interface ICoffeesItemProps extends ICoffees {
   layout?: 'store' | 'checkout'
@@ -25,15 +26,17 @@ export function CoffeeItem({
   id,
   categories,
   description,
-  image_path,
+  imagePath,
   title,
   amountSelected,
   layout,
+  price,
 }: ICoffeesItemProps) {
   const {
     handleAmountSelecteds,
     verifyCoffeesToCheckout,
     removeCoffeeToCheckout,
+    handleSendCoffeeToCart,
   } = useContext(CoffeeContext)
 
   verifyCoffeesToCheckout()
@@ -50,11 +53,15 @@ export function CoffeeItem({
     removeCoffeeToCheckout(id)
   }
 
+  const onSendCoffeeToCart = () => {
+    handleSendCoffeeToCart(id, 'send')
+  }
+
   return (
     <>
       {layout === 'store' || !layout ? (
         <CoffeeItemContainerStore>
-          <img src={image_path} alt="" />
+          <img src={imagePath} alt="" />
           <CoffeeCategoriesWrapper>
             {categories.map((category, index) => (
               <CoffeeCategories key={index}>
@@ -68,8 +75,7 @@ export function CoffeeItem({
           </CoffeeInfoWrapper>
           <CoffeePricesWrapper>
             <CoffeePrice>
-              <span className="prefix">R$ </span>
-              <span className="price">9,90</span>
+              <span className="price">{priceFormatter.format(price)}</span>
             </CoffeePrice>
             <CounterCartWrapper>
               <div className="counterWrapper">
@@ -81,15 +87,15 @@ export function CoffeeItem({
                   +
                 </button>
               </div>
-              <div className="cartWrapper">
+              <button className="cartWrapper" onClick={onSendCoffeeToCart}>
                 <ShoppingCart size={16} weight="fill" />
-              </div>
+              </button>
             </CounterCartWrapper>
           </CoffeePricesWrapper>
         </CoffeeItemContainerStore>
       ) : (
         <CoffeeItemContainerCheckout>
-          <img src={image_path} alt="" />
+          <img src={imagePath} alt="" />
           <CoffeeCartWrapper>
             <CoffeeCheckoutHeaderContainer>
               <h4>{title}</h4>

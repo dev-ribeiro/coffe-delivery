@@ -12,6 +12,7 @@ export function CoffeeStrore() {
       return {
         ...coffee,
         id: JSON.stringify(coffee),
+        price: 9.9,
         amountSelected: 0,
       }
     })
@@ -31,7 +32,9 @@ export function CoffeeStrore() {
               key={coffee.id}
               categories={coffee.categories}
               title={coffee.title}
-              image_path={coffee.image_path}
+              price={coffee.price}
+              sendToCart={false}
+              imagePath={coffee.imagePath}
               description={coffee.description}
               layout="store"
               amountSelected={coffee.amountSelected}

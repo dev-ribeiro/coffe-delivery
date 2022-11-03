@@ -5,7 +5,7 @@
         ],
         "title": "Expresso Tradicional",
         "description": "O tradicional café feito com água quente e grãos moídos",
-        "image_path": "/store/expresso.png"
+        "imagePath": "/store/expresso.png"
     },
     {
         "categories": [
@@ -13,7 +13,7 @@
         ],
         "title": "Expresso Americano",
         "description": "Expresso diluído, menos intenso que o tradicional",
-        "image_path": "/store/americano.png"
+        "imagePath": "/store/americano.png"
     },
     {
         "categories": [
@@ -21,7 +21,7 @@
         ],
         "title": "Expresso cremoso",
         "description": "Café expresso tradicional com espuma cremosa",
-        "image_path": "/store/expresso_cremoso.png"
+        "imagePath": "/store/expresso_cremoso.png"
     },
     {
         "categories": [
@@ -30,7 +30,7 @@
         ],
         "title": "Expresso gelado",
         "description": "Bebida preparada com café expresso e cubos de gelo",
-        "image_path": "/store/cafe_gelado.png"
+        "imagePath": "/store/cafe_gelado.png"
     },
     {
         "categories": [
@@ -39,7 +39,7 @@
         ],
         "title": "Café com leite",
         "description": "Meio a meio de expresso tradicional com leite vaporizado",
-        "image_path": "/store/cafe_com_leite.png"
+        "imagePath": "/store/cafe_com_leite.png"
     },
     {
         "categories": [
@@ -48,7 +48,7 @@
         ],
         "title": "Latte",
         "description": "Uma dose de café expresso com o dobro de leite e espuma cremosa",
-        "image_path": "/store/latte.png"
+        "imagePath": "/store/latte.png"
     },
     {
         "categories": [
@@ -57,7 +57,7 @@
         ],
         "title": "Capuccino",
         "description": "Bebida com canela feita de doses iguais de café, leite e espuma",
-        "image_path": "/store/capuccino.png"
+        "imagePath": "/store/capuccino.png"
     },
     {
         "categories": [
@@ -65,7 +65,7 @@
         ],
         "title": "Macchiato",
         "description": "Café expresso misturado com um pouco de leite quente e espuma",
-        "image_path": "/store/macchiato.png"
+        "imagePath": "/store/macchiato.png"
     },
     {
         "categories": [
@@ -74,7 +74,7 @@
         ],
         "title": "Mocaccino",
         "description": "Café expresso com calda de chocolate, pouco leite e espuma",
-        "image_path": "/store/mocaccino.png"
+        "imagePath": "/store/mocaccino.png"
     },
     {
         "categories": [
@@ -83,7 +83,7 @@
         ],
         "title": "Chocolate Quente",
         "description": "Bebida feita com chocolate dissolvido no leite quente e café",
-        "image_path": "/store/chocolate_quente.png"
+        "imagePath": "/store/chocolate_quente.png"
     },
     {
         "categories": [
@@ -93,24 +93,24 @@
         ],
         "title": "Cubano",
         "description": "Drink gelado de café expresso com rum, creme de leite e hortelã",
-        "image_path": "/store/cubano.png"
+        "imagePath": "/store/cubano.png"
     },
     {
         "categories": ["especial"],
         "title": "Havaiano",
         "description": "Bebida adocicada preparada com café e leite de coco",
-        "image_path": "/store/havaiano.png"
+        "imagePath": "/store/havaiano.png"
     },
     {
         "categories": ["especial"],
         "title": "Árabe",
         "description": "Bebida preparada com grãos de café árabe e especiarias",
-        "image_path": "/store/arabe.png"
+        "imagePath": "/store/arabe.png"
     },
     {
         "categories": ["especial","alcoolico"],
         "title": "Irlandês",
         "description": "Bebida a base de café, uísque irlandês, açúcar e chantilly",
-        "image_path": "/store/irlandes.png"
+        "imagePath": "/store/irlandes.png"
     }
 ]

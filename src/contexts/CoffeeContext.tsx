@@ -4,8 +4,10 @@ export interface ICoffees {
   categories: string[]
   id: string
   title: string
+  price: number
   description: string
-  image_path: string
+  imagePath: string
+  sendToCart?: boolean
   amountSelected: number
 }
 
@@ -15,6 +17,7 @@ interface ICoffeeContextType {
   handleAmountSelecteds: (id: string, operation: 'sum' | 'decrease') => void
   verifyCoffeesToCheckout: () => ICoffees[]
   removeCoffeeToCheckout: (id: string) => void
+  handleSendCoffeeToCart: (id: string, operation: 'send' | 'remove') => void
 }
 
 export const CoffeeContext = createContext({} as ICoffeeContextType)
@@ -57,6 +60,21 @@ export function CoffeeContextProvider({
     }
   }
 
+  const handleSendCoffeeToCart = (id: string, operation: 'send' | 'remove') => {
+    if (operation === 'send') {
+      coffees.map((coffee) => {
+        if (coffee.id === id) {
+          console.log(coffee)
+          return { ...coffee, sendToCart: true }
+        } else {
+          return coffee
+        }
+      })
+    } else {
+      console.log('REMOVER')
+    }
+  }
+
   const verifyCoffeesToCheckout = () => {
     const selectedCoffes: ICoffees[] = coffees.filter(
       (coffee) => coffee.amountSelected !== 0,
@@ -85,6 +103,7 @@ export function CoffeeContextProvider({
         handleAmountSelecteds,
         verifyCoffeesToCheckout,
         removeCoffeeToCheckout,
+        handleSendCoffeeToCart,
       }}
     >
       {children}

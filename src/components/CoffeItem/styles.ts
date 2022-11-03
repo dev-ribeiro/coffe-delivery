@@ -81,11 +81,6 @@ export const CoffeePrice = styled.div`
     color: ${(props) => props.theme['gray-500']};
   }
 
-  .prefix {
-    font-size: 14px;
-    font-family: 'Roboto', sans-serif;
-  }
-
   .price {
     font-size: 24px;
     font-weight: bolder;
@@ -132,7 +127,7 @@ export const CounterCartWrapper = styled.div`
     align-items: center;
 
     background-color: ${(props) => props.theme['purple-dark']};
-
+    border: none;
     border-radius: 6px;
 
     svg {
