@@ -4,33 +4,27 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { AddressForm } from './components/AddressForm'
 import { SelectedCoffes } from './components/SelectedCoffes'
 import { CheckoutContainer } from './styles'
+import { FormEvent, useContext } from 'react'
+import { FormAdressContext } from '../../contexts/FormAdressContext'
 
 const registerAddressFormSchema = zod.object({
   cep: zod.string().max(8, 'CEP pode possuir no máximo 8 dígitos'),
   street: zod.string().min(1, 'Este campo não pode estar vazio'),
   address: zod.string().min(1, 'Este campo não pode estar vazio'),
-  complement: zod.string().min(1, 'Este campo não pode estar vazio'),
+  complement: zod.string(),
   district: zod.string().min(1, 'Este campo não pode estar vazio'),
   city: zod.string().min(1, 'Este campo não pode estar vazio'),
   state: zod.string().min(1, 'Este campo não pode estar vazio'),
-  paymentMethod: zod.string(),
+  paymentMethod: zod.enum(['cash', 'credit', 'debit']),
 })
 
 export type addressFormData = zod.infer<typeof registerAddressFormSchema>
 
 export function CheckoutPage() {
-  const { handleSubmit, register } = useForm<addressFormData>({
+  const { handleSubmitAddressForm } = useContext(FormAdressContext)
+
+  const { handleSubmit, register, control } = useForm<addressFormData>({
     resolver: zodResolver(registerAddressFormSchema),
-    defaultValues: {
-      address: '',
-      cep: '',
-      street: '',
-      city: '',
-      complement: '',
-      district: '',
-      state: '',
-      paymentMethod: 'cash',
-    },
   })
 
   const onSubmitForm = (data: any) => {
@@ -39,7 +33,7 @@ export function CheckoutPage() {
 
   return (
     <CheckoutContainer onSubmit={handleSubmit(onSubmitForm)}>
-      <AddressForm register={register} />
+      <AddressForm register={register} control={control} />
       <SelectedCoffes />
     </CheckoutContainer>
   )

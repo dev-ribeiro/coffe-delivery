@@ -1,4 +1,6 @@
-import React, { createContext, ReactNode, useState } from 'react'
+import React, { createContext, MouseEvent, ReactNode, useState } from 'react'
+
+export type paymentOptions = 'credit' | 'debit' | 'cash'
 
 interface IFormAdress {
   cep: string
@@ -8,12 +10,12 @@ interface IFormAdress {
   district: string
   city: string
   state: string
-  paymentMethod: 'credit' | 'debit' | 'cash'
+  paymentMethod: paymentOptions
 }
 
 interface IFormAdressContextType {
   adressInfo: IFormAdress
-  handleUpdateAdressInfo: (data: IFormAdress) => void
+  handleSubmitAddressForm: (data: IFormAdress) => void
 }
 
 export const FormAdressContext = createContext({} as IFormAdressContextType)
@@ -25,23 +27,31 @@ interface IFormAdressContextProps {
 export function FormAdressContextProvider({
   children,
 }: IFormAdressContextProps) {
-  const [adressInfo, setAdressInfo] = useState<IFormAdress>({
-    address: '',
-    cep: '',
-    street: '',
-    city: '',
-    complement: '',
-    district: '',
-    state: '',
-    paymentMethod: 'cash',
-  })
+  const [adressInfo, setAdressInfo] = useState<IFormAdress>({} as IFormAdress)
 
-  const handleUpdateAdressInfo = (data: IFormAdress) => {
-    setAdressInfo(data)
+  const handleSubmitAddressForm = (data: IFormAdress) => {
+    setAdressInfo((state) => {
+      return {
+        ...state,
+        cep: data.cep,
+        street: data.street,
+        address: data.address,
+        complement: data.complement,
+        district: data.district,
+        city: data.city,
+        state: data.state,
+        paymentMethod: data.paymentMethod,
+      }
+    })
   }
 
   return (
-    <FormAdressContext.Provider value={{ adressInfo, handleUpdateAdressInfo }}>
+    <FormAdressContext.Provider
+      value={{
+        adressInfo,
+        handleSubmitAddressForm,
+      }}
+    >
       {children}
     </FormAdressContext.Provider>
   )

@@ -5,7 +5,7 @@ import {
   MapPinLine,
   Money,
 } from 'phosphor-react'
-import { FieldValues, useForm, UseFormRegister } from 'react-hook-form'
+import { Control, Controller, UseFormRegister } from 'react-hook-form'
 import { addressFormData } from '../..'
 import * as RadioGroup from '@radix-ui/react-radio-group'
 import {
@@ -18,12 +18,17 @@ import {
   PaymentMethodContainer,
   PaymentOptionsWrapper,
 } from './styles'
+import { useContext } from 'react'
+import { FormAdressContext } from '../../../../contexts/FormAdressContext'
 
 interface IAdressForm {
   register: UseFormRegister<addressFormData>
+  control: Control<addressFormData>
 }
 
-export function AddressForm({ register }: IAdressForm) {
+export function AddressForm({ register, control }: IAdressForm) {
+  const { adressInfo } = useContext(FormAdressContext)
+
   return (
     <AdressFormContainer>
       <h2>Complete seu pedido</h2>
@@ -98,26 +103,40 @@ export function AddressForm({ register }: IAdressForm) {
             </span>
           </div>
         </PaymentInfoWrapper>
-        <PaymentOptionsWrapper>
-          <RadioGroup.Item value="credit" asChild>
-            <button>
-              <CreditCard size={16} />
-              <span>CARTÃO DE CRÉDITO</span>
-            </button>
-          </RadioGroup.Item>
-          <RadioGroup.Item value="debit" asChild>
-            <button>
-              <Bank size={16} />
-              <span>CARTÃO DE DÉBITO</span>
-            </button>
-          </RadioGroup.Item>
-          <RadioGroup.Item value="cash" asChild>
-            <button>
-              <Money size={16} />
-              <span>DINHEIRO</span>
-            </button>
-          </RadioGroup.Item>
-        </PaymentOptionsWrapper>
+        <Controller
+          control={control}
+          name="paymentMethod"
+          render={({ field }) => {
+            console.log(field)
+
+            return (
+              <PaymentOptionsWrapper
+                onValueChange={field.onChange}
+                value={field.value}
+              >
+                <RadioGroup.Item value="credit" asChild>
+                  <button>
+                    <CreditCard size={16} />
+                    <span>CARTÃO DE CRÉDITO</span>
+                  </button>
+                </RadioGroup.Item>
+                <RadioGroup.Item value="debit" asChild>
+                  <button>
+                    <Bank size={16} />
+                    <span>CARTÃO DE DÉBITO</span>
+                  </button>
+                </RadioGroup.Item>
+                <RadioGroup.Item value="cash" asChild>
+                  <button>
+                    <Money size={16} />
+                    <span>DINHEIRO</span>
+                  </button>
+                </RadioGroup.Item>
+              </PaymentOptionsWrapper>
+            )
+          }}
+        />
+        {/*  */}
       </PaymentMethodContainer>
     </AdressFormContainer>
   )

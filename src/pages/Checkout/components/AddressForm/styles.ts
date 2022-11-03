@@ -78,7 +78,7 @@ export const Input = styled.input<InputProps>`
   }
 `
 
-export const PaymentMethodContainer = styled(RadioGroup.Root)`
+export const PaymentMethodContainer = styled.div`
   margin-top: 12px;
   padding: 40px;
 
@@ -111,7 +111,7 @@ export const PaymentInfoWrapper = styled.header`
   }
 `
 
-export const PaymentOptionsWrapper = styled.div`
+export const PaymentOptionsWrapper = styled(RadioGroup.Root)`
   display: flex;
   gap: 0.75rem;
   justify-content: center;

@@ -49,9 +49,9 @@ export function SelectedCoffes() {
             <h5>{(finalPrice + 5).toFixed(2).toString().replace('.', ',')}</h5>
           </div>
         </BillContainer>
-        <NavLink to={'/success'}>
-          <SubmitButton type="submit">CONFIRMAR PEDIDO</SubmitButton>
-        </NavLink>
+        {/* <NavLink to={'/success'}> */}
+        <SubmitButton type="submit">CONFIRMAR PEDIDO</SubmitButton>
+        {/* </NavLink> */}
       </CartCoffeesCheckoutWrapper>
     </SelectedCoffesContainer>
   )
