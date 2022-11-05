@@ -1,23 +1,28 @@
-import { createContext, ReactNode, useState } from 'react'
-
-export interface ICoffees {
-  categories: string[]
-  id: string
-  title: string
-  price: number
-  description: string
-  imagePath: string
-  sendToCart?: boolean
-  amountSelected: number
-}
+import {
+  createContext,
+  ReactNode,
+  Reducer,
+  ReducerAction,
+  useEffect,
+  useReducer,
+  useState,
+} from 'react'
+import { v4 as uuidv4 } from 'uuid'
+import coffeesData from '../data/data.json'
+import {
+  CoffeeActionsType,
+  decreaseAmountSelected,
+  incrementAmountSelected,
+  selectCurrentCoffeeToCart,
+} from '../reducers/coffees/actions'
+import { CoffeeReducer, ICoffees } from '../reducers/coffees/reducer'
 
 interface ICoffeeContextType {
   coffees: ICoffees[]
-  updateCoffesData: (data: ICoffees[]) => void
-  handleAmountSelecteds: (id: string, operation: 'sum' | 'decrease') => void
-  verifyCoffeesToCheckout: () => ICoffees[]
-  removeCoffeeToCheckout: (id: string) => void
-  handleSendCoffeeToCart: (id: string, operation: 'send' | 'remove') => void
+  checkoutCart: string[]
+  addItem: (id: string) => void
+  removeItem: (id: string) => void
+  addToCheckout: (id: string) => void
 }
 
 export const CoffeeContext = createContext({} as ICoffeeContextType)
@@ -26,84 +31,47 @@ interface ICoffeeContextProviderProps {
   children: ReactNode
 }
 
+const initialCoffeeData: ICoffees[] = coffeesData.map((coffee) => {
+  return {
+    ...coffee,
+    id: uuidv4(),
+    amountSelected: 0,
+    price: 9.9,
+  }
+})
+
+const initialCheckout: string[] = []
+
 export function CoffeeContextProvider({
   children,
 }: ICoffeeContextProviderProps) {
-  const [coffees, setCoffees] = useState<ICoffees[]>([])
+  const [coffeeState, dispatch] = useReducer(CoffeeReducer, {
+    coffees: initialCoffeeData,
+    checkoutCart: initialCheckout,
+  })
 
-  const updateCoffesData = (data: ICoffees[]) => {
-    setCoffees(data)
+  const { coffees, checkoutCart } = coffeeState
+
+  const addItem = (id: string) => {
+    dispatch(incrementAmountSelected(id))
   }
 
-  const handleAmountSelecteds = (id: string, operation: 'sum' | 'decrease') => {
-    if (operation === 'sum') {
-      const addCoffes = coffees.map((coffee) => {
-        if (coffee.id === id) {
-          return { ...coffee, amountSelected: coffee.amountSelected + 1 }
-        } else {
-          return coffee
-        }
-      })
-
-      setCoffees(addCoffes)
-    }
-
-    if (operation === 'decrease') {
-      const decreaseCoffes = coffees.map((coffee) => {
-        if (coffee.id === id) {
-          return { ...coffee, amountSelected: coffee.amountSelected + 1 }
-        } else {
-          return coffee
-        }
-      })
-      setCoffees(decreaseCoffes)
-    }
+  const removeItem = (id: string) => {
+    dispatch(decreaseAmountSelected(id))
   }
 
-  const handleSendCoffeeToCart = (id: string, operation: 'send' | 'remove') => {
-    if (operation === 'send') {
-      coffees.map((coffee) => {
-        if (coffee.id === id) {
-          console.log(coffee)
-          return { ...coffee, sendToCart: true }
-        } else {
-          return coffee
-        }
-      })
-    } else {
-      console.log('REMOVER')
-    }
-  }
-
-  const verifyCoffeesToCheckout = () => {
-    const selectedCoffes: ICoffees[] = coffees.filter(
-      (coffee) => coffee.amountSelected !== 0,
-    )
-
-    return selectedCoffes
-  }
-
-  const removeCoffeeToCheckout = (id: string) => {
-    const update = coffees.map((coffee) => {
-      if (coffee.id === id) {
-        return { ...coffee, amountSelected: 0 }
-      } else {
-        return coffee
-      }
-    })
-
-    setCoffees(update)
+  const addToCheckout = (id: string) => {
+    dispatch(selectCurrentCoffeeToCart(id))
   }
 
   return (
     <CoffeeContext.Provider
       value={{
         coffees,
-        updateCoffesData,
-        handleAmountSelecteds,
-        verifyCoffeesToCheckout,
-        removeCoffeeToCheckout,
-        handleSendCoffeeToCart,
+        checkoutCart,
+        addItem,
+        removeItem,
+        addToCheckout,
       }}
     >
       {children}

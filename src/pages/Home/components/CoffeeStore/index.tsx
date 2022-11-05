@@ -1,25 +1,10 @@
 import { useContext, useEffect } from 'react'
-import { CoffeeItem } from '../../../../components/CoffeItem'
+import { CoffeeItem } from '../../../../components/CoffeItemStore'
 import { CoffeeStroreContainer, StoreContainer } from './styles'
-import coffesData from '../../../../data/data.json'
-import { CoffeeContext, ICoffees } from '../../../../contexts/CoffeeContext'
+import { CoffeeContext } from '../../../../contexts/CoffeeContext'
 
 export function CoffeeStrore() {
-  const { coffees, updateCoffesData } = useContext(CoffeeContext)
-
-  useEffect(() => {
-    const db: ICoffees[] = coffesData.map((coffee) => {
-      return {
-        ...coffee,
-        id: JSON.stringify(coffee),
-        price: 9.9,
-        amountSelected: 0,
-      }
-    })
-
-    updateCoffesData(db)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  const { coffees } = useContext(CoffeeContext)
 
   return (
     <CoffeeStroreContainer>
@@ -33,11 +18,11 @@ export function CoffeeStrore() {
               categories={coffee.categories}
               title={coffee.title}
               price={coffee.price}
-              sendToCart={false}
+              sendToCart={coffee.sendToCart}
               imagePath={coffee.imagePath}
               description={coffee.description}
-              layout="store"
               amountSelected={coffee.amountSelected}
+              layout="store"
             />
           )
         })}

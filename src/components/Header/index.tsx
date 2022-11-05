@@ -11,8 +11,7 @@ import {
 } from './styles'
 
 export function Header() {
-  const { verifyCoffeesToCheckout } = useContext(CoffeeContext)
-  const count = verifyCoffeesToCheckout().length
+  const { checkoutCart } = useContext(CoffeeContext)
 
   return (
     <HeaderContainer>
@@ -24,12 +23,12 @@ export function Header() {
           <MapPin size={22} weight="fill" />
           <span>Fortaleza - Ce</span>
         </LocationContainer>
-        {count !== 0 ? (
+        {checkoutCart.length !== 0 ? (
           <CartWrapper>
             <NavLink className="cart" to="/checkout">
               <ShoppingCart size={22} weight="fill" />
             </NavLink>
-            <span>{count}</span>
+            <span>{checkoutCart.length}</span>
           </CartWrapper>
         ) : (
           <NavLink className="cart" to="/checkout">

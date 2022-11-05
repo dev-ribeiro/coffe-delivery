@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom'
-import { CoffeeItem } from '../../../../components/CoffeItem'
+import { CoffeeItem } from '../../../../components/CoffeItemStore'
 import { CoffeeContext } from '../../../../contexts/CoffeeContext'
 import {
   BillContainer,
@@ -10,18 +10,11 @@ import {
 } from './styles'
 
 export function SelectedCoffes() {
-  const { verifyCoffeesToCheckout } = useContext(CoffeeContext)
-  const coffeesToCheckout = verifyCoffeesToCheckout()
-  const getAmountOfCoffees = coffeesToCheckout.reduce((acc, coffee) => {
-    return acc + coffee.amountSelected
-  }, 0)
-  const finalPrice = getAmountOfCoffees * 9.9
-
   return (
     <SelectedCoffesContainer>
       <h2>Cafés selecionados</h2>
       <CartCoffeesCheckoutWrapper>
-        {coffeesToCheckout.map((coffee) => {
+        {/* {coffeesToCheckout.map((coffee) => {
           return (
             <CoffeeItem
               id={coffee.id}
@@ -34,19 +27,19 @@ export function SelectedCoffes() {
               layout="checkout"
             />
           )
-        })}
+        })} */}
         <BillContainer>
           <div>
             <span>Total de itens</span>
-            <span>R$ {finalPrice.toFixed(2).toString().replace('.', ',')}</span>
+            {/* <span>R$ {finalPrice.toFixed(2).toString().replace('.', ',')}</span> */}
           </div>
           <div>
             <span>Entrega</span>
-            <span>R$ {(5).toFixed(2).toString().replace('.', ',')}</span>
+            {/* <span>R$ {(5).toFixed(2).toString().replace('.', ',')}</span> */}
           </div>
           <div>
             <h5>Total</h5>
-            <h5>{(finalPrice + 5).toFixed(2).toString().replace('.', ',')}</h5>
+            {/* <h5>{(finalPrice + 5).toFixed(2).toString().replace('.', ',')}</h5> */}
           </div>
         </BillContainer>
         {/* <NavLink to={'/success'}> */}

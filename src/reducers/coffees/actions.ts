@@ -1,7 +1,10 @@
+import { ICoffees } from './reducer'
+
 export enum CoffeeActionsType {
   INCREMENT_AMOUNT_SELECTED = 'INCREMENT_AMOUNT_SELECTED',
   DECREASE_AMMOUNT_SELECTED = 'DECREASE_AMMOUNT_SELECTED',
   SELECT_CURRENT_COFFEE_TO_CART = 'SELECT_CURRENT_COFFEE_TO_CART',
+  REMOVE_CURRENT_COFFEE_OF_CART = 'REMOVE_CURRENT_COFFEE_OF_CART',
 }
 
 export function incrementAmountSelected(id: string) {
@@ -25,6 +28,15 @@ export function decreaseAmountSelected(id: string) {
 export function selectCurrentCoffeeToCart(id: string) {
   return {
     type: CoffeeActionsType.SELECT_CURRENT_COFFEE_TO_CART,
+    payload: {
+      id,
+    },
+  }
+}
+
+export function removeCurrentCoffeeOfCart(id: string, coffee: ICoffees) {
+  return {
+    type: CoffeeActionsType.REMOVE_CURRENT_COFFEE_OF_CART,
     payload: {
       id,
     },

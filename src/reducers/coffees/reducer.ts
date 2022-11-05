@@ -7,12 +7,12 @@ export interface ICoffees {
   price: number
   description: string
   imagePath: string
-  sendToCart: boolean
   amountSelected: number
 }
 
 interface ICoffeeState {
   coffees: ICoffees[]
+  checkoutCart: string[]
 }
 
 export function CoffeeReducer(state: ICoffeeState, actions: any) {
@@ -34,21 +34,29 @@ export function CoffeeReducer(state: ICoffeeState, actions: any) {
         ...state,
         coffees: state.coffees.map((coffee) => {
           if (coffee.id === actions.payload.id) {
-            return { ...coffee, amountSelected: coffee.amountSelected - 1 }
+            if (coffee.amountSelected > 0) {
+              return { ...coffee, amountSelected: coffee.amountSelected - 1 }
+            }
           }
 
           return coffee
         }),
       }
 
-    // case CoffeeActionsType.SELECT_CURRENT_COFFEE_TO_CART:
-    //   return state.coffees.map((coffee) => {
-    //     if (coffee.id === actions.payload.id) {
-    //       return { ...coffee, sendToCart: true }
-    //     }
+    case CoffeeActionsType.SELECT_CURRENT_COFFEE_TO_CART: {
+      const searchCoffee = state.coffees.find((coffee) => {
+        return coffee.id === actions.payload.id
+      })
 
-    //     return coffee
-    //   })
+      if (searchCoffee && searchCoffee.amountSelected > 0) {
+        return {
+          ...state,
+          checkoutCart: [...state.checkoutCart, searchCoffee.id],
+        }
+      }
+
+      return state
+    }
 
     default:
       return state
