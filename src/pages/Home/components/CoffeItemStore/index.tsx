@@ -18,10 +18,10 @@ export function CoffeeItem({
   id,
   categories,
   description,
-  imagePath,
-  title,
   amountSelected,
+  imagePath,
   price,
+  title,
 }: ICoffees) {
   const { addItem, removeItem, addToCheckout } = useContext(CoffeeContext)
 

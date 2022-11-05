@@ -8,11 +8,11 @@ export interface ICoffees {
   description: string
   imagePath: string
   amountSelected: number
+  isCheckoutCart: boolean
 }
 
 interface ICoffeeState {
   coffees: ICoffees[]
-  checkoutCart: string[]
 }
 
 export function CoffeeReducer(state: ICoffeeState, actions: any) {
@@ -43,20 +43,29 @@ export function CoffeeReducer(state: ICoffeeState, actions: any) {
         }),
       }
 
-    case CoffeeActionsType.SELECT_CURRENT_COFFEE_TO_CART: {
-      const searchCoffee = state.coffees.find((coffee) => {
-        return coffee.id === actions.payload.id
-      })
+    case CoffeeActionsType.SELECT_CURRENT_COFFEE_TO_CART:
+      return {
+        ...state,
+        coffees: state.coffees.map((coffee) => {
+          if (coffee.id === actions.payload.id) {
+            return { ...coffee, isCheckoutCart: true }
+          }
 
-      if (searchCoffee && searchCoffee.amountSelected > 0) {
-        return {
-          ...state,
-          checkoutCart: [...state.checkoutCart, searchCoffee.id],
-        }
+          return coffee
+        }),
       }
 
-      return state
-    }
+    case CoffeeActionsType.REMOVE_CURRENT_COFFEE_OF_CART:
+      return {
+        ...state,
+        coffees: state.coffees.map((coffee) => {
+          if (coffee.id === actions.payload.id) {
+            return { ...coffee, isCheckoutCart: false }
+          }
+
+          return coffee
+        }),
+      }
 
     default:
       return state

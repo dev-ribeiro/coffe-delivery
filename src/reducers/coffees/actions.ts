@@ -4,7 +4,7 @@ export enum CoffeeActionsType {
   INCREMENT_AMOUNT_SELECTED = 'INCREMENT_AMOUNT_SELECTED',
   DECREASE_AMMOUNT_SELECTED = 'DECREASE_AMMOUNT_SELECTED',
   SELECT_CURRENT_COFFEE_TO_CART = 'SELECT_CURRENT_COFFEE_TO_CART',
-  REMOVE_CURRENT_COFFEE_OF_CART = 'REMOVE_CURRENT_COFFEE_OF_CART',
+  REMOVE_CURRENT_COFFEE_FROM_CART = 'REMOVE_CURRENT_COFFEE_FROM_CART',
 }
 
 export function incrementAmountSelected(id: string) {
@@ -34,9 +34,9 @@ export function selectCurrentCoffeeToCart(id: string) {
   }
 }
 
-export function removeCurrentCoffeeOfCart(id: string, coffee: ICoffees) {
+export function removeCurrentCoffeeFromCart(id: string) {
   return {
-    type: CoffeeActionsType.REMOVE_CURRENT_COFFEE_OF_CART,
+    type: CoffeeActionsType.REMOVE_CURRENT_COFFEE_FROM_CART,
     payload: {
       id,
     },

@@ -11,7 +11,11 @@ import {
 } from './styles'
 
 export function Header() {
-  const { checkoutCart } = useContext(CoffeeContext)
+  const { coffees } = useContext(CoffeeContext)
+
+  const checkoutCart = coffees.filter((coffee) => {
+    return coffee.isCheckoutCart === true
+  })
 
   return (
     <HeaderContainer>

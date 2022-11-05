@@ -13,16 +13,17 @@ import {
   CoffeeActionsType,
   decreaseAmountSelected,
   incrementAmountSelected,
+  removeCurrentCoffeeFromCart,
   selectCurrentCoffeeToCart,
 } from '../reducers/coffees/actions'
 import { CoffeeReducer, ICoffees } from '../reducers/coffees/reducer'
 
 interface ICoffeeContextType {
   coffees: ICoffees[]
-  checkoutCart: string[]
   addItem: (id: string) => void
   removeItem: (id: string) => void
   addToCheckout: (id: string) => void
+  removeFromCheckout: (id: string) => void
 }
 
 export const CoffeeContext = createContext({} as ICoffeeContextType)
@@ -37,20 +38,18 @@ const initialCoffeeData: ICoffees[] = coffeesData.map((coffee) => {
     id: uuidv4(),
     amountSelected: 0,
     price: 9.9,
+    isCheckoutCart: false,
   }
 })
-
-const initialCheckout: string[] = []
 
 export function CoffeeContextProvider({
   children,
 }: ICoffeeContextProviderProps) {
   const [coffeeState, dispatch] = useReducer(CoffeeReducer, {
     coffees: initialCoffeeData,
-    checkoutCart: initialCheckout,
   })
 
-  const { coffees, checkoutCart } = coffeeState
+  const { coffees } = coffeeState
 
   const addItem = (id: string) => {
     dispatch(incrementAmountSelected(id))
@@ -64,14 +63,18 @@ export function CoffeeContextProvider({
     dispatch(selectCurrentCoffeeToCart(id))
   }
 
+  const removeFromCheckout = (id: string) => {
+    dispatch(removeCurrentCoffeeFromCart(id))
+  }
+
   return (
     <CoffeeContext.Provider
       value={{
         coffees,
-        checkoutCart,
         addItem,
         removeItem,
         addToCheckout,
+        removeFromCheckout,
       }}
     >
       {children}

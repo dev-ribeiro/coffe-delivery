@@ -1,4 +1,6 @@
 import { Trash } from 'phosphor-react'
+import { FormEvent, useContext } from 'react'
+import { CoffeeContext } from '../../../../contexts/CoffeeContext'
 import { ICoffees } from '../../../../reducers/coffees/reducer'
 import {
   CoffeeCartWrapper,
@@ -8,23 +10,27 @@ import {
   CounterCheckoutContainer,
 } from './styles'
 
-export function CoffeeItemCheckou({
+export function CoffeeItemCheckout({
   id,
-  categories,
-  description,
   imagePath,
   title,
   amountSelected,
   price,
 }: ICoffees) {
+  const { removeFromCheckout } = useContext(CoffeeContext)
+
+  const onRemoveFromCheckout = () => {
+    removeFromCheckout(id)
+  }
+
   return (
-    <CoffeeItemContainerCheckout>
+    <CoffeeItemContainerCheckout id={id}>
       <img src={imagePath} alt="" />
       <CoffeeCartWrapper>
         <CoffeeCheckoutHeaderContainer>
           <h4>{title}</h4>
           <span>
-            {(amountSelected * 9.9).toFixed(2).toString().replace('.', ',')}
+            {(amountSelected * price).toFixed(2).toString().replace('.', ',')}
           </span>
         </CoffeeCheckoutHeaderContainer>
         <CounterCheckoutContainer>
@@ -33,7 +39,7 @@ export function CoffeeItemCheckou({
             <span>{amountSelected}</span>
             <button>+</button>
           </CounterCartWrapperInCheckout>
-          <button>
+          <button onClick={onRemoveFromCheckout}>
             <Trash size={16} />
             <span>REMOVER</span>
           </button>
