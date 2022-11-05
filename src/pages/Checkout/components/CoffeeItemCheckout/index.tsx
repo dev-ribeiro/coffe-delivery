@@ -17,10 +17,17 @@ export function CoffeeItemCheckout({
   amountSelected,
   price,
 }: ICoffees) {
-  const { removeFromCheckout } = useContext(CoffeeContext)
+  const { addItem, removeItem, removeFromCheckout } = useContext(CoffeeContext)
 
   const onRemoveFromCheckout = () => {
     removeFromCheckout(id)
+  }
+
+  const onAddItem = () => {
+    addItem(id)
+  }
+  const onRemoveItem = () => {
+    removeItem(id)
   }
 
   return (
@@ -35,9 +42,9 @@ export function CoffeeItemCheckout({
         </CoffeeCheckoutHeaderContainer>
         <CounterCheckoutContainer>
           <CounterCartWrapperInCheckout>
-            <button>-</button>
+            <button onClick={onRemoveItem}>-</button>
             <span>{amountSelected}</span>
-            <button>+</button>
+            <button onClick={onAddItem}>+</button>
           </CounterCartWrapperInCheckout>
           <button onClick={onRemoveFromCheckout}>
             <Trash size={16} />

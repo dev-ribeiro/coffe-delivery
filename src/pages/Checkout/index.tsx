@@ -27,8 +27,8 @@ export function CheckoutPage() {
     resolver: zodResolver(registerAddressFormSchema),
   })
 
-  const onSubmitForm = (data: any) => {
-    console.log(data)
+  const onSubmitForm = (data: addressFormData) => {
+    handleSubmitAddressForm(data)
   }
 
   return (

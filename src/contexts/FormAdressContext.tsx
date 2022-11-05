@@ -14,7 +14,7 @@ interface IFormAdress {
 }
 
 interface IFormAdressContextType {
-  adressInfo: IFormAdress
+  adressForm: IFormAdress
   handleSubmitAddressForm: (data: IFormAdress) => void
 }
 
@@ -27,20 +27,15 @@ interface IFormAdressContextProps {
 export function FormAdressContextProvider({
   children,
 }: IFormAdressContextProps) {
-  const [adressInfo, setAdressInfo] = useState<IFormAdress>({} as IFormAdress)
+  const [adressForm, setAdressForm] = useState<IFormAdress>({} as IFormAdress)
 
   const handleSubmitAddressForm = (data: IFormAdress) => {
-    setAdressInfo((state) => {
+    setAdressForm((state) => {
+      const formData = Object.assign(state, data)
+      console.log(formData)
       return {
         ...state,
-        cep: data.cep,
-        street: data.street,
-        address: data.address,
-        complement: data.complement,
-        district: data.district,
-        city: data.city,
-        state: data.state,
-        paymentMethod: data.paymentMethod,
+        ...formData,
       }
     })
   }
@@ -48,7 +43,7 @@ export function FormAdressContextProvider({
   return (
     <FormAdressContext.Provider
       value={{
-        adressInfo,
+        adressForm,
         handleSubmitAddressForm,
       }}
     >

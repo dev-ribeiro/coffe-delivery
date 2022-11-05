@@ -6,8 +6,13 @@ import {
   SuccessPurchaseContainer,
 } from './styles'
 import delivery from '../../images/delivery.svg'
+import { useContext } from 'react'
+import { FormAdressContext } from '../../contexts/FormAdressContext'
 
 export function SuccessPurchasePage() {
+  const { adressForm } = useContext(FormAdressContext)
+  console.log(adressForm)
+
   return (
     <SuccessPurchaseContainer>
       <div>
@@ -22,9 +27,9 @@ export function SuccessPurchasePage() {
             </IconWrapper>
             <div>
               <span>
-                Entrega em <b>Rua Daniel Martinelli, 397</b>
+                Entrega em <b>{`${(adressForm.street, adressForm.address)}`}</b>
               </span>
-              <span>Porto Alegre - RS</span>
+              <span>{`${adressForm.city} - ${adressForm.city}`}</span>
             </div>
           </section>
           <section>
@@ -42,7 +47,7 @@ export function SuccessPurchasePage() {
             </IconWrapper>
             <div>
               <span>Pagamento na entrega</span>
-              <b>Cartão de crédito</b>
+              <b>{adressForm.paymentMethod}</b>
             </div>
           </section>
         </DeliveryBrief>

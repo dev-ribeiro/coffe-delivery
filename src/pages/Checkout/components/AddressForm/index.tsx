@@ -27,7 +27,7 @@ interface IAdressForm {
 }
 
 export function AddressForm({ register, control }: IAdressForm) {
-  const { adressInfo } = useContext(FormAdressContext)
+  const { adressForm } = useContext(FormAdressContext)
 
   return (
     <AdressFormContainer>
@@ -107,8 +107,6 @@ export function AddressForm({ register, control }: IAdressForm) {
           control={control}
           name="paymentMethod"
           render={({ field }) => {
-            console.log(field)
-
             return (
               <PaymentOptionsWrapper
                 onValueChange={field.onChange}
