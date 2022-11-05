@@ -9,10 +9,10 @@ import {
   CoffeePricesWrapper,
   CounterCartWrapper,
 } from './styles'
-import { priceFormatter } from '../../utils/formatter'
-import { ICoffees } from '../../reducers/coffees/reducer'
+import { priceFormatter } from '../../../../utils/formatter'
+import { ICoffees } from '../../../../reducers/coffees/reducer'
 import { useContext } from 'react'
-import { CoffeeContext } from '../../contexts/CoffeeContext'
+import { CoffeeContext } from '../../../../contexts/CoffeeContext'
 
 export function CoffeeItem({
   id,

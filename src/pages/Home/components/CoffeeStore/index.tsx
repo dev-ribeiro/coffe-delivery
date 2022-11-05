@@ -1,5 +1,5 @@
 import { useContext, useEffect } from 'react'
-import { CoffeeItem } from '../../../../components/CoffeItemStore'
+import { CoffeeItem } from '../CoffeItemStore'
 import { CoffeeStroreContainer, StoreContainer } from './styles'
 import { CoffeeContext } from '../../../../contexts/CoffeeContext'
 

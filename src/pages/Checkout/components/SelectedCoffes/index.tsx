@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom'
-import { CoffeeItem } from '../../../../components/CoffeItemStore'
+import { CoffeeItem } from '../../../Home/components/CoffeItemStore'
 import { CoffeeContext } from '../../../../contexts/CoffeeContext'
 import {
   BillContainer,

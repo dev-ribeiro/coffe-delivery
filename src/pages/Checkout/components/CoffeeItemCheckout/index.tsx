@@ -1,5 +1,5 @@
 import { Trash } from 'phosphor-react'
-import { ICoffees } from '../../reducers/coffees/reducer'
+import { ICoffees } from '../../../../reducers/coffees/reducer'
 import {
   CoffeeCartWrapper,
   CoffeeCheckoutHeaderContainer,
