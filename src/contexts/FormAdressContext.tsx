@@ -32,7 +32,6 @@ export function FormAdressContextProvider({
   const handleSubmitAddressForm = (data: IFormAdress) => {
     setAdressForm((state) => {
       const formData = Object.assign(state, data)
-      console.log(formData)
       return {
         ...state,
         ...formData,

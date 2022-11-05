@@ -18,11 +18,10 @@ export function CoffeeStrore() {
               categories={coffee.categories}
               title={coffee.title}
               price={coffee.price}
-              sendToCart={coffee.sendToCart}
+              isCheckoutCart={coffee.isCheckoutCart}
               imagePath={coffee.imagePath}
               description={coffee.description}
               amountSelected={coffee.amountSelected}
-              layout="store"
             />
           )
         })}

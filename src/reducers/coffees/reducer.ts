@@ -55,7 +55,7 @@ export function CoffeeReducer(state: ICoffeeState, actions: any) {
         }),
       }
 
-    case CoffeeActionsType.REMOVE_CURRENT_COFFEE_OF_CART:
+    case CoffeeActionsType.REMOVE_CURRENT_COFFEE_FROM_CART:
       return {
         ...state,
         coffees: state.coffees.map((coffee) => {
