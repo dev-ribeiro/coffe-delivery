@@ -1,11 +1,10 @@
 import { useForm } from 'react-hook-form'
 import * as zod from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { AddressForm } from './components/AddressForm'
-import { SelectedCoffes } from './components/SelectedCoffes'
 import { CheckoutContainer } from './styles'
 import { FormEvent, useContext } from 'react'
 import { FormAdressContext } from '../../contexts/FormAdressContext'
+import { AdressForm } from './components/AdressForm'
 
 const registerAddressFormSchema = zod.object({
   cep: zod.string().max(8, 'CEP pode possuir no máximo 8 dígitos'),
@@ -21,20 +20,9 @@ const registerAddressFormSchema = zod.object({
 export type addressFormData = zod.infer<typeof registerAddressFormSchema>
 
 export function CheckoutPage() {
-  const { handleSubmitAddressForm } = useContext(FormAdressContext)
-
-  const { handleSubmit, register, control } = useForm<addressFormData>({
-    resolver: zodResolver(registerAddressFormSchema),
-  })
-
-  const onSubmitForm = (data: addressFormData) => {
-    handleSubmitAddressForm(data)
-  }
-
   return (
-    <CheckoutContainer onSubmit={handleSubmit(onSubmitForm)}>
-      <AddressForm register={register} control={control} />
-      <SelectedCoffes />
+    <CheckoutContainer>
+      <AdressForm />
     </CheckoutContainer>
   )
 }
