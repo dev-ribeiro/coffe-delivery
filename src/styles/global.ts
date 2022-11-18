@@ -5,6 +5,7 @@ export const GlobalStyles = createGlobalStyle`
         margin: 0;
         padding: 0;
         box-sizing: border-box;
+        line-height: 130%;
     }
 
     body {
@@ -14,5 +15,9 @@ export const GlobalStyles = createGlobalStyle`
 
     button {
         cursor: pointer;
+    }
+
+    a, span, p {
+        font-family: 'Roboto', sans-serif;
     }
 `
