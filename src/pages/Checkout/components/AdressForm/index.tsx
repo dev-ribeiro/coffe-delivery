@@ -7,10 +7,11 @@ import {
   MapPinLine,
   Money,
 } from 'phosphor-react'
-import { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import { CoffeeContext } from '../../../../contexts/CoffeeContext'
 import { useCheckoutCart } from '../../../../hooks/useCheckoutCart'
+import { useFormAddress } from '../../../../hooks/useFormAddress'
 import { priceFormatter } from '../../../../utils/formatter'
 import { CoffeeItemCheckout } from '../CoffeeItemCheckout'
 import {
@@ -29,12 +30,29 @@ import {
   PaymentOptionsWrapper,
 } from './styles'
 
+interface FormAdressType {
+  cep: string
+  street: string
+  address: string
+  complement?: string
+  district: string
+  city: string
+  state: string
+  paymentMethod: 'credit' | 'debit' | 'cash'
+}
+
 export function AdressForm() {
   const { checkouCart, summaryBill } = useCheckoutCart()
-  const { control } = useForm()
+  const { control, handleSubmit, register } = useForm()
+  const { handleSetAddressData } = useFormAddress()
+
+  function getInformationOfAddressForm(data: any) {
+    const addressData: FormAdressType = data
+    handleSetAddressData(addressData)
+  }
 
   return (
-    <AdressFormContainer>
+    <AdressFormContainer onSubmit={handleSubmit(getInformationOfAddressForm)}>
       <DeliveryPanelContainer>
         <h2>Complete seu pedido</h2>
         <AdressInformationsContainer>
@@ -47,31 +65,66 @@ export function AdressForm() {
           </AdressInformationHeader>
           <AdressInputsGroup>
             <AdressInputWrapper inputGroupName="cep">
-              <AdressInput name="cep" type="text" />
+              <AdressInput
+                type="text"
+                {...register('cep')}
+                placeholder=" "
+                required
+              />
               <label htmlFor="cep">CEP</label>
             </AdressInputWrapper>
             <AdressInputWrapper inputGroupName="street">
-              <AdressInput name="street" type="text" />
+              <AdressInput
+                {...register('street')}
+                type="text"
+                placeholder=" "
+                required
+              />
               <label htmlFor="street">Rua</label>
             </AdressInputWrapper>
             <AdressInputWrapper inputGroupName="address">
-              <AdressInput name="address" type="text" />
+              <AdressInput
+                {...register('address')}
+                type="text"
+                placeholder=" "
+                required
+              />
               <label htmlFor="address">Número</label>
             </AdressInputWrapper>
             <AdressInputWrapper inputGroupName="complement">
-              <AdressInput name="complement" type="text" />
+              <AdressInput
+                {...register('complement')}
+                type="text"
+                placeholder="Opcional"
+                className="optional"
+              />
               <label htmlFor="complement">Complemento</label>
             </AdressInputWrapper>
             <AdressInputWrapper inputGroupName="district">
-              <AdressInput name="district" type="text" />
+              <AdressInput
+                {...register('district')}
+                type="text"
+                placeholder=" "
+                required
+              />
               <label htmlFor="district">Bairro</label>
             </AdressInputWrapper>
             <AdressInputWrapper inputGroupName="city">
-              <AdressInput name="city" type="text" />
+              <AdressInput
+                {...register('city')}
+                type="text"
+                placeholder=" "
+                required
+              />
               <label htmlFor="city">Cidade</label>
             </AdressInputWrapper>
             <AdressInputWrapper inputGroupName="state">
-              <AdressInput name="state" type="text" />
+              <AdressInput
+                {...register('state')}
+                type="text"
+                placeholder=" "
+                required
+              />
               <label htmlFor="state">UF</label>
             </AdressInputWrapper>
           </AdressInputsGroup>

@@ -94,8 +94,12 @@ export const AdressInputWrapper = styled.div<InputWrapperProps>`
     color: ${(props) => props.theme['gray-450']};
   }
 
-  .hideLabel {
-    display: none;
+  .optional::placeholder {
+    width: 100%;
+    text-align: end;
+    font-style: italic;
+    font-size: 0.75rem;
+    font-family: 'Roboto', sans-serif;
   }
 `
 
@@ -107,10 +111,15 @@ export const AdressInput = styled.input`
   border: none;
   display: inline;
   border: 1px solid ${(props) => props.theme['gray-350']};
-  background: ${(props) => props.theme['gray-100']};
+  background: ${(props) => props.theme['gray-300']};
 
-  :focus {
+  &:focus {
     border: 1px solid ${(props) => props.theme['yellow-dark']};
+  }
+
+  &:focus + label,
+  &:not(:placeholder-shown) + label {
+    display: none;
   }
 `
 
