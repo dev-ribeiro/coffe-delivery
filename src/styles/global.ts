@@ -17,7 +17,11 @@ export const GlobalStyles = createGlobalStyle`
         cursor: pointer;
     }
 
-    a, span, p {
+    a, span, p, label {
         font-family: 'Roboto', sans-serif;
+    }
+
+    :focus {
+        outline: none;
     }
 `
