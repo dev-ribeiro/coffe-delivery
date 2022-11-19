@@ -10,6 +10,8 @@ import {
 import { useContext } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import { CoffeeContext } from '../../../../contexts/CoffeeContext'
+import { useCheckoutCart } from '../../../../hooks/useCheckoutCart'
+import { priceFormatter } from '../../../../utils/formatter'
 import { CoffeeItemCheckout } from '../CoffeeItemCheckout'
 import {
   AdressFormContainer,
@@ -28,7 +30,7 @@ import {
 } from './styles'
 
 export function AdressForm() {
-  const { coffees } = useContext(CoffeeContext)
+  const { checkouCart, summaryBill } = useCheckoutCart()
   const { control } = useForm()
 
   return (
@@ -121,19 +123,17 @@ export function AdressForm() {
         <h2>Cafés selecionados</h2>
         <div>
           <CheckoutCartContainer>
-            {coffees.map((coffee, index) => {
-              if (index < 2) {
-                return <CoffeeItemCheckout key={coffee.id} {...coffee} />
-              }
+            {checkouCart.map((coffee) => {
+              return <CoffeeItemCheckout key={coffee.id} {...coffee} />
             })}
           </CheckoutCartContainer>
           <OrderSummary>
             <span>Total de itens</span>
-            <span>R$ 29,70</span>
+            <span>{priceFormatter.format(summaryBill)}</span>
             <span>Entrega</span>
             <span>R$ 3,50</span>
             <span>Total</span>
-            <span>R$ 33,70</span>
+            <span>{priceFormatter.format(summaryBill + 3.5)}</span>
           </OrderSummary>
           <button type="submit">CONFIRMAR PEDIDO</button>
         </div>

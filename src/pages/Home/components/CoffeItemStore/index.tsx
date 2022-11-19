@@ -11,8 +11,8 @@ import {
 } from './styles'
 import { priceFormatter } from '../../../../utils/formatter'
 import { ICoffees } from '../../../../reducers/coffees/reducer'
-import { useContext } from 'react'
-import { CoffeeContext } from '../../../../contexts/CoffeeContext'
+import { useEffect } from 'react'
+import { useHandleCheckout } from '../../../../hooks/useHandleCheckout'
 
 export function CoffeeItem({
   id,
@@ -23,18 +23,16 @@ export function CoffeeItem({
   price,
   title,
 }: ICoffees) {
-  const { addItem, removeItem, addToCheckout } = useContext(CoffeeContext)
+  const {
+    getCoffeeIdInformation,
+    handleAddItem,
+    handleRemoveItem,
+    handleSendToCheckout,
+  } = useHandleCheckout()
 
-  const onAddItem = () => {
-    addItem(id)
-  }
-  const onRemoveItem = () => {
-    removeItem(id)
-  }
-
-  const onAddToCheckout = () => {
-    addToCheckout(id)
-  }
+  useEffect(() => {
+    getCoffeeIdInformation(id)
+  }, [getCoffeeIdInformation, id])
 
   return (
     <CoffeeItemContainerStore id={id}>
@@ -56,15 +54,15 @@ export function CoffeeItem({
         </CoffeePrice>
         <CounterCartWrapper>
           <div className="counterWrapper">
-            <button className="minun" onClick={onRemoveItem}>
+            <button className="minun" onClick={handleRemoveItem}>
               -
             </button>
             <span className="counter">{amountSelected}</span>
-            <button className="plus" onClick={onAddItem}>
+            <button className="plus" onClick={handleAddItem}>
               +
             </button>
           </div>
-          <button className="cartWrapper" onClick={onAddToCheckout}>
+          <button className="cartWrapper" onClick={handleSendToCheckout}>
             <ShoppingCart size={16} weight="fill" />
           </button>
         </CounterCartWrapper>

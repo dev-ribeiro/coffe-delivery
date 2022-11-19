@@ -3,7 +3,6 @@ import * as zod from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { CheckoutContainer } from './styles'
 import { FormEvent, useContext } from 'react'
-import { FormAdressContext } from '../../contexts/FormAdressContext'
 import { AdressForm } from './components/AdressForm'
 
 const registerAddressFormSchema = zod.object({

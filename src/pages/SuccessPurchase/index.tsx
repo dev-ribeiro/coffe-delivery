@@ -7,12 +7,8 @@ import {
 } from './styles'
 import delivery from '../../images/delivery.svg'
 import { useContext } from 'react'
-import { FormAdressContext } from '../../contexts/FormAdressContext'
 
 export function SuccessPurchasePage() {
-  const { adressForm } = useContext(FormAdressContext)
-  console.log(adressForm)
-
   return (
     <SuccessPurchaseContainer>
       <div>
@@ -21,7 +17,7 @@ export function SuccessPurchasePage() {
           <span>Agora é só aguardar que logo o café chegará até você</span>
         </SuccessInfoContainer>
         <DeliveryBrief>
-          <section>
+          {/* <section>
             <IconWrapper>
               <MapPin size={16} weight="fill" />
             </IconWrapper>
@@ -31,7 +27,7 @@ export function SuccessPurchasePage() {
               </span>
               <span>{`${adressForm.city} - ${adressForm.city}`}</span>
             </div>
-          </section>
+          </section> */}
           <section>
             <IconWrapper>
               <Timer size={16} weight="fill" />
@@ -47,7 +43,7 @@ export function SuccessPurchasePage() {
             </IconWrapper>
             <div>
               <span>Pagamento na entrega</span>
-              <b>{adressForm.paymentMethod}</b>
+              {/* <b>{adressForm.paymentMethod}</b> */}
             </div>
           </section>
         </DeliveryBrief>

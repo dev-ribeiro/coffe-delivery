@@ -1,6 +1,6 @@
 import { Trash } from 'phosphor-react'
-import { FormEvent, useContext } from 'react'
-import { CoffeeContext } from '../../../../contexts/CoffeeContext'
+import { useEffect } from 'react'
+import { useHandleCheckout } from '../../../../hooks/useHandleCheckout'
 import { ICoffees } from '../../../../reducers/coffees/reducer'
 import {
   CoffeeCartWrapper,
@@ -17,18 +17,16 @@ export function CoffeeItemCheckout({
   amountSelected,
   price,
 }: ICoffees) {
-  const { addItem, removeItem, removeFromCheckout } = useContext(CoffeeContext)
+  const {
+    getCoffeeIdInformation,
+    handleAddItem,
+    handleRemoveItem,
+    handleRemoveItemFromCheckout,
+  } = useHandleCheckout()
 
-  const onRemoveFromCheckout = () => {
-    removeFromCheckout(id)
-  }
-
-  const onAddItem = () => {
-    addItem(id)
-  }
-  const onRemoveItem = () => {
-    removeItem(id)
-  }
+  useEffect(() => {
+    getCoffeeIdInformation(id)
+  }, [getCoffeeIdInformation, id])
 
   return (
     <CoffeeItemContainerCheckout id={id}>
@@ -42,11 +40,11 @@ export function CoffeeItemCheckout({
         </CoffeeCheckoutHeaderContainer>
         <CounterCheckoutContainer>
           <CounterCartWrapperInCheckout>
-            <button onClick={onRemoveItem}>-</button>
+            <button onClick={handleRemoveItem}>-</button>
             <span>{amountSelected}</span>
-            <button onClick={onAddItem}>+</button>
+            <button onClick={handleAddItem}>+</button>
           </CounterCartWrapperInCheckout>
-          <button onClick={onRemoveFromCheckout}>
+          <button onClick={handleRemoveItemFromCheckout}>
             <Trash size={16} />
             <span>REMOVER</span>
           </button>
