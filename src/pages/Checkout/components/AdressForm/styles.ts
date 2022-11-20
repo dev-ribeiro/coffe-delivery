@@ -208,11 +208,18 @@ export const OrderSummaryContainer = styled.div`
     background: ${(props) => props.theme['gray-200']};
 
     button[type='submit'] {
+      width: 100%;
       height: 2.875rem;
       font-size: 0.875rem;
-      color: ${(props) => props.theme.white};
       border: none;
       background: ${(props) => props.theme.yellow};
+
+      a {
+        width: 100%;
+        height: 100%;
+        text-decoration: none;
+        color: ${(props) => props.theme.white};
+      }
 
       &:hover {
         background: ${(props) => props.theme['yellow-dark']};
