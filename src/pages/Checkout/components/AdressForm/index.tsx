@@ -9,7 +9,7 @@ import {
 } from 'phosphor-react'
 import React, { useContext, useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'
-import { Link, Navigate } from 'react-router-dom'
+import { Link, Navigate, useNavigate } from 'react-router-dom'
 import { CoffeeContext } from '../../../../contexts/CoffeeContext'
 import { useCheckoutCart } from '../../../../hooks/useCheckoutCart'
 import { useFormAddress } from '../../../../hooks/useFormAddress'
@@ -46,9 +46,11 @@ export function AdressForm() {
   const { checkoutCart, summaryBill } = useCheckoutCart()
   const { control, handleSubmit, register } = useForm()
   const { handleSetAddressData } = useFormAddress()
+  const navigate = useNavigate()
 
   function getInformationOfAddressForm(data: any) {
     const addressData: FormAdressType = data
+    navigate('/success')
     handleSetAddressData(addressData)
   }
 
@@ -189,9 +191,7 @@ export function AdressForm() {
             <span>Total</span>
             <span>{priceFormatter.format(summaryBill + 3.5)}</span>
           </OrderSummary>
-          <button type="submit">
-            <Link to="/success">CONFIRMAR PEDIDO</Link>
-          </button>
+          <button type="submit">CONFIRMAR PEDIDO</button>
         </div>
       </OrderSummaryContainer>
     </AdressFormContainer>

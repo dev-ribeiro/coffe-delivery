@@ -213,13 +213,7 @@ export const OrderSummaryContainer = styled.div`
       font-size: 0.875rem;
       border: none;
       background: ${(props) => props.theme.yellow};
-
-      a {
-        width: 100%;
-        height: 100%;
-        text-decoration: none;
-        color: ${(props) => props.theme.white};
-      }
+      color: ${(props) => props.theme.white};
 
       &:hover {
         background: ${(props) => props.theme['yellow-dark']};
