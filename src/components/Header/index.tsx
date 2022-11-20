@@ -1,7 +1,8 @@
 import { MapPin, ShoppingCart } from 'phosphor-react'
-import { useContext } from 'react'
+import { useEffect } from 'react'
 import { NavLink } from 'react-router-dom'
-import { CoffeeContext } from '../../contexts/CoffeeContext'
+import { useCheckoutCart } from '../../hooks/useCheckoutCart'
+import { useHandleUserLocation } from '../../hooks/useHandleUserLocation'
 import logo from '../../images/logo.svg'
 import {
   CartWrapper,
@@ -11,11 +12,12 @@ import {
 } from './styles'
 
 export function Header() {
-  const { coffees } = useContext(CoffeeContext)
+  const { checkoutCart } = useCheckoutCart()
+  const { location, getUserLocation } = useHandleUserLocation()
 
-  const checkoutCart = coffees.filter((coffee) => {
-    return coffee.isCheckoutCart === true
-  })
+  useEffect(() => {
+    getUserLocation()
+  }, [])
 
   return (
     <HeaderContainer>
@@ -25,7 +27,7 @@ export function Header() {
       <ShoppingCartContainer>
         <LocationContainer>
           <MapPin size={22} weight="fill" />
-          <span>Fortaleza - Ce</span>
+          <span>{location}</span>
         </LocationContainer>
         {checkoutCart.length !== 0 ? (
           <CartWrapper>

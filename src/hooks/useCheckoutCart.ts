@@ -14,7 +14,7 @@ interface CheckoutCartType {
 
 export function useCheckoutCart() {
   const { coffees } = useContext(CoffeeContext)
-  const [checkouCart, setCheckoutCart] = useState<CheckoutCartType[]>([])
+  const [checkoutCart, setCheckoutCart] = useState<CheckoutCartType[]>([])
 
   useEffect(() => {
     const shippedCoffees = coffees.filter((coffee) => {
@@ -24,12 +24,12 @@ export function useCheckoutCart() {
     setCheckoutCart(shippedCoffees)
   }, [coffees])
 
-  const summaryBill = checkouCart.reduce((acc, coffee) => {
+  const summaryBill = checkoutCart.reduce((acc, coffee) => {
     return (acc += coffee.amountSelected * coffee.price)
   }, 0)
 
   return {
-    checkouCart,
+    checkoutCart,
     summaryBill,
   }
 }

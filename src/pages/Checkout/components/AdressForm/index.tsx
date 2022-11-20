@@ -43,7 +43,7 @@ interface FormAdressType {
 }
 
 export function AdressForm() {
-  const { checkouCart, summaryBill } = useCheckoutCart()
+  const { checkoutCart, summaryBill } = useCheckoutCart()
   const { control, handleSubmit, register } = useForm()
   const { handleSetAddressData } = useFormAddress()
 
@@ -177,7 +177,7 @@ export function AdressForm() {
         <h2>Cafés selecionados</h2>
         <div>
           <CheckoutCartContainer>
-            {checkouCart.map((coffee) => {
+            {checkoutCart.map((coffee) => {
               return <CoffeeItemCheckout key={coffee.id} {...coffee} />
             })}
           </CheckoutCartContainer>
