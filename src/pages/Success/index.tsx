@@ -12,8 +12,7 @@ import {
 } from './styles'
 
 export function SuccessPage() {
-  const { addressFormData } = useFormAddress()
-  //   console.log(addressFormData)
+  const { addressFormData, searchPaymentOption } = useFormAddress()
 
   return (
     <SuccessPageContainer>
@@ -29,8 +28,13 @@ export function SuccessPage() {
                 <MapPin size={16} weight="fill" />
               </IconWrapper>
               <span>
-                Entrega em <b>Rua João Daniel Martinelli, 102</b> Farrapos -
-                Porto Alegre, RS
+                Entrega em{' '}
+                <b>
+                  {addressFormData.street}, {addressFormData.address},{' '}
+                  {addressFormData.complement}
+                </b>{' '}
+                {addressFormData.district} - {addressFormData.city},{' '}
+                {addressFormData.state}
               </span>
             </AddressInformationGroupWrapper>
             <AddressInformationGroupWrapper>
@@ -48,7 +52,8 @@ export function SuccessPage() {
               </IconWrapper>
               <span>
                 Pagamento na entrega
-                <br /> <b>Cartão de Crédito</b>
+                <br />{' '}
+                <b>{searchPaymentOption(addressFormData.paymentMethod)}</b>
               </span>
             </AddressInformationGroupWrapper>
           </div>

@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-export type paymentOptions = 'credit' | 'debit' | 'cash'
+type paymentOptions = 'credit' | 'debit' | 'cash'
 
 interface FormAdressType {
   cep: string
@@ -36,8 +36,22 @@ export function useFormAddress() {
     setAddressFormData(data)
   }
 
+  function searchPaymentOption(option: paymentOptions) {
+    switch (option) {
+      case 'cash':
+        return 'Dinheiro'
+      case 'credit':
+        return 'Cartão de crédito'
+      case 'debit':
+        return 'Cartão de crédito'
+      default:
+        return 'Dinheiro'
+    }
+  }
+
   return {
     addressFormData,
     handleSetAddressData,
+    searchPaymentOption,
   }
 }
